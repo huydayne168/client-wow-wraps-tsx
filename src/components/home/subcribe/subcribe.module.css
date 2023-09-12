@@ -1,0 +1,59 @@
+.subcribe {
+    margin-top: 9.4rem;
+    padding: 7rem 0rem;
+    display: flex;
+    background: url("../../../asset/asset/stat-background.png");
+    background-color: lightgray 1449.597px 1287.15px / -100.637% -893.236%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.subcribe-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.heading,
+.desc {
+    text-align: start;
+}
+
+.desc {
+    max-width: 40.5rem;
+}
+
+.subcribe-form {
+    width: 47rem;
+    position: relative;
+}
+
+.subcribe-form input {
+    padding-bottom: 2.8rem;
+}
+
+.subcribe-form button {
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 998px) {
+    .subcribe-wrapper {
+        flex-direction: column;
+        gap: 4.8rem;
+    }
+    .heading,
+    .desc {
+        text-align: center;
+    }
+
+    .subcribe-form {
+        max-width: 47rem;
+        width: 100%;
+    }
+}

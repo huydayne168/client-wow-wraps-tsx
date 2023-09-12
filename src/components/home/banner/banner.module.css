@@ -1,0 +1,14 @@
+.banner {
+    padding-top: 2.6rem;
+    padding-bottom: 2.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+    .banner {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+}

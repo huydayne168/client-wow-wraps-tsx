@@ -1,0 +1,112 @@
+.food-list-wrapper {
+    width: 100%;
+}
+
+.food-list-wrapper ul {
+    height: 60rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+.food-list-wrapper ul::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.food-list-wrapper ul::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.food-list-wrapper ul::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.food-list-wrapper ul::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+.food-list-wrapper ul::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.food-list__item {
+    height: 33.3333%;
+    width: 100%;
+    /* max-height: 18rem; */
+    display: flex;
+    gap: 1.2rem;
+    color: #fff;
+    background-color: #16161a;
+    transition: all 400ms ease;
+    border-radius: 0.4rem;
+}
+
+.food-list__item:hover {
+    cursor: pointer;
+    background-color: #0b0b11;
+}
+
+.food-image {
+    width: 28%;
+    border-radius: 0.4rem;
+}
+
+.food-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.desc {
+    flex: 1;
+    padding: 1.2rem;
+    padding-right: 3.2rem;
+}
+
+.desc-name,
+.desc-price {
+    font-family: Libre Bodoni;
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.416667; /* 141.667% */
+    text-transform: capitalize;
+}
+
+.desc-price {
+    margin-top: 0.6rem;
+}
+
+.desc-text {
+    margin-top: 0.6rem;
+    color: var(--white-80, rgba(255, 255, 255, 0.8));
+    /* 16 */
+    font-family: Plus Jakarta Sans;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.625; /* 162.5% */
+    margin-bottom: 1.2rem;
+}
+
+.food-desc--bottom {
+    margin-top: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    font-family: Plus Jakarta Sans;
+
+    padding-bottom: 0.6rem;
+    border-bottom: 0.1rem solid transparent;
+    opacity: 0.6;
+    border-bottom: 0.1rem solid var(--main-color);
+}
+
+.button:hover {
+    cursor: pointer;
+    opacity: 1;
+}

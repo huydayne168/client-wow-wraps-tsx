@@ -1,0 +1,16 @@
+.main-menu {
+    margin-top: 6rem;
+}
+
+.main-menu__body {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 3.6rem;
+    gap: 3.2rem;
+}
+
+@media screen and (max-width: 998px) {
+    .main-menu__body {
+        flex-direction: column;
+    }
+}

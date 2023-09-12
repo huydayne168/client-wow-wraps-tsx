@@ -1,0 +1,10 @@
+.time-open {
+    border-bottom: 1px solid currentColor;
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width: 768px) {
+    .time-open {
+        font-size: 1.4rem;
+    }
+}

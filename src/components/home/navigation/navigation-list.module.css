@@ -1,0 +1,46 @@
+.navigation-list {
+    transition: all 400ms ease;
+}
+
+.navigation-list ul {
+    display: flex;
+    gap: 3.4rem;
+}
+
+.nav-item {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #fff;
+}
+
+.nav-item:hover {
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation-list {
+        position: relative;
+        transition: all 400ms ease;
+    }
+
+    .navigation-list ul {
+        position: absolute;
+        top: 3.6rem;
+        flex-direction: column;
+        gap: 1.2rem;
+        background-color: #333;
+        padding: 0.4rem 0.2rem;
+        border-radius: 0.2rem;
+    }
+
+    .nav-item {
+        padding: 1rem 12rem 1rem 0.8rem;
+        border-radius: 0.4rem;
+        white-space: nowrap;
+    }
+
+    .nav-item:hover {
+        color: var(--dark-background);
+        background-color: var(--main-color);
+    }
+}

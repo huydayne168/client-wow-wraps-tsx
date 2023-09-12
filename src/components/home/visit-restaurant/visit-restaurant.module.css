@@ -1,0 +1,48 @@
+.visit-restaurant {
+    margin-top: 8rem;
+}
+
+.restaurant-images {
+    margin-top: 6rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, minmax(20rem, 28.5rem));
+    gap: 3rem;
+}
+
+.restaurant-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.restaurant-images img:nth-child(3) {
+    grid-column: 2/3;
+    grid-row: 1 / span 2;
+}
+
+.slide-img {
+    width: 100%;
+    height: 60rem;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 992px) {
+    .restaurant-images img:nth-child(3) {
+        grid-row: 2/3;
+        grid-column: 1 / span 2;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* .most-popular {
+        padding: rem;
+    } */
+    .food-wrapper {
+        flex-direction: column;
+    }
+
+    .visit-restaurant p {
+        margin-bottom: 2.4rem;
+    }
+}
