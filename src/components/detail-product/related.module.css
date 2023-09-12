@@ -1,0 +1,45 @@
+.related {
+    color: var(--White, #fff);
+}
+.heading,
+.name,
+.price {
+    font-family: Libre Bodoni;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.41667; /* 141.667% */
+    text-transform: capitalize;
+}
+
+.related-list {
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+}
+
+.related-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.name {
+    margin-top: 1.8rem;
+}
+
+.desc-detail {
+    margin-top: 0.6rem;
+    font-family: Plus Jakarta Sans;
+    font-style: normal;
+    line-height: 1.625; /* 162.5% */
+    color: var(--paragraph-color);
+}
+
+.bottom {
+    margin-top: 3.6rem;
+    padding-top: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--paragraph-color);
+}

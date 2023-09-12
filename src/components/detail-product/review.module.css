@@ -1,8 +1,31 @@
 .review {
+    min-height: 26.2rem;
+    max-height: 5rem;
     margin-top: 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 3.2rem;
+    overflow-y: scroll;
+    scroll-behavior: contain;
+}
+
+.review::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.review::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.review::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.review::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+.review::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .review-item {

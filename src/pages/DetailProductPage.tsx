@@ -1,6 +1,7 @@
 import React from "react";
 import FoodDetail from "../components/detail-product/FoodDetail";
 import DescAndReview from "../components/detail-product/DescAndReview";
+import Related from "../components/detail-product/Related";
 // import { useLocation } from "react-router-dom";
 const DetailProductPage: React.FC<{}> = () => {
     // const location = useLocation();
@@ -38,6 +39,7 @@ const DetailProductPage: React.FC<{}> = () => {
         <div className="checkout-page">
             <FoodDetail food={food} />
             <DescAndReview food={food} />
+            <Related />
         </div>
     );
 };

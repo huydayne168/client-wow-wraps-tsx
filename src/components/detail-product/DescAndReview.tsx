@@ -3,6 +3,7 @@ import styles from "./desc-and-review.module.css";
 import { Food } from "../../models/food";
 import Description from "./Description";
 import ReviewComp from "./ReviewComp";
+
 const DescAndReview: React.FC<{ food: Food }> = ({ food }) => {
     const compInitState = "DESCRIPTION";
     const compReducer = useCallback(

@@ -36,7 +36,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                         </div>
                         <div className={styles["food-desc--bottom"]}>
                             <RateStar ratePoint={3} />
-                            <div className={styles.button}>Order Now</div>
+                            <div className={`order-button`}>Order Now</div>
                         </div>
                     </div>
                 </li>
@@ -56,7 +56,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                         </div>
                         <div className={styles["food-desc--bottom"]}>
                             <RateStar ratePoint={3} />
-                            <div className={styles.button}>Order Now</div>
+                            <div className={`order-button`}>Order Now</div>
                         </div>
                     </div>
                 </li>
@@ -76,7 +76,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                         </div>
                         <div className={styles["food-desc--bottom"]}>
                             <RateStar ratePoint={3} />
-                            <div className={styles.button}>Order Now</div>
+                            <div className={`order-button`}>Order Now</div>
                         </div>
                     </div>
                 </li>
@@ -96,7 +96,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                         </div>
                         <div className={styles["food-desc--bottom"]}>
                             <RateStar ratePoint={3} />
-                            <div className={styles.button}>Order Now</div>
+                            <div className={`order-button`}>Order Now</div>
                         </div>
                     </div>
                 </li>
