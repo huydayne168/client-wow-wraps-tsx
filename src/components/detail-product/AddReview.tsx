@@ -18,7 +18,9 @@ const AddReview: React.FC<{}> = () => {
                     placeholder="Tell everybody what you think about this food!"
                 ></textarea>
 
-                <button className={styles["add-button"]}>Submit</button>
+                <button className={`button ${styles["add-button"]}`}>
+                    Submit
+                </button>
             </form>
         </div>
     );

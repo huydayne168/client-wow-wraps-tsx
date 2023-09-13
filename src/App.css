@@ -16,9 +16,9 @@ html {
 
 body {
     position: relative;
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
     margin: 0px;
-    background-color: var(--dark-background);
+    background-color: var(--dark-background) !important;
 }
 
 /* Root variables: */
@@ -94,6 +94,17 @@ input {
 .order-button:hover {
     cursor: pointer;
     opacity: 1;
+}
+
+.button {
+    padding: 0.8rem 3rem;
+    background-color: var(--main-color);
+    border: none;
+    color: #fff;
+    font-family: Plus Jakarta Sans;
+    line-height: 1.625;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 768px) {

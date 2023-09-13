@@ -7,6 +7,7 @@ import { screenActions } from "./stores/store-toolkit";
 import { useAppDispatch } from "./hooks/store-hooks";
 import MenuPage from "./pages/MenuPage";
 import DetailProductPage from "./pages/DetailProductPage";
+import CartPage from "./pages/CartPage";
 function App() {
     // const screenWidth = useSelector((state: any) => state.screenWidth);
     const dispatch = useAppDispatch();
@@ -39,6 +40,10 @@ function App() {
                 {
                     element: <DetailProductPage />,
                     path: "/detail-page",
+                },
+                {
+                    element: <CartPage />,
+                    path: "/cart-page",
                 },
             ],
         },

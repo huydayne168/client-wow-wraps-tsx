@@ -24,12 +24,5 @@
 }
 
 .add-button {
-    padding: 0.8rem 3rem;
-    background-color: var(--main-color);
-    border: none;
-    color: #fff;
-    font-family: Plus Jakarta Sans;
-    line-height: 1.625;
     margin-top: 4.4rem;
-    cursor: pointer;
 }

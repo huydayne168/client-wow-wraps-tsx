@@ -1,0 +1,81 @@
+.cart-table {
+    margin-top: 11.3rem;
+}
+
+.table {
+    height: 60rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+.table::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.table::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.table::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.table::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+.table::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.food-desc {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.name {
+    font-size: 2.4rem;
+    font-family: Plus Jakarta Sans;
+}
+
+.change-amount {
+    margin: auto;
+}
+
+.change-amount,
+.change-amount tr {
+    border: 1px solid #fff;
+}
+
+.change-amount tr td {
+    padding: 1.2rem 2.4rem;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.change-amount tr td input {
+    width: 3rem;
+    text-align: center;
+}
+
+.actions-form {
+    margin-top: 2.6rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.coupon {
+    display: flex;
+    gap: 2.6rem;
+}
+
+.goto-checkout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}

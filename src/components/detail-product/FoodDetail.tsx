@@ -69,7 +69,9 @@ const FoodDetail: React.FC<{ food: Food }> = ({ food }) => {
                         </thead>
                     </table>
 
-                    <button onClick={gotoCartPage}>Add to cart</button>
+                    <button className="button" onClick={gotoCartPage}>
+                        Add to cart
+                    </button>
                 </form>
 
                 <div className={styles["food-more-info"]}>

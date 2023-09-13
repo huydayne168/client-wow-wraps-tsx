@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./navigation-bar.module.css";
 import NavigationList from "./NavigationList";
 import Logo from "../../../asset/asset/Logo";
 import TimeOpen from "./TimeOpen";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const NavigationBar: React.FC<{}> = () => {
+    const navigate = useNavigate();
+
+    const gotoCartPage = useCallback(() => {
+        navigate("/cart-page");
+    }, [navigate]);
+
     // get screenWidth :
     const screenWidth = useSelector((state: any) => state.screenWidth);
     return (
@@ -14,7 +21,9 @@ const NavigationBar: React.FC<{}> = () => {
             <div className={styles["right-side"]}>
                 <TimeOpen />
                 {screenWidth ? (
-                    <div className={styles["cart-nav"]}>Your Cart</div>
+                    <div className={styles["cart-nav"]} onClick={gotoCartPage}>
+                        Your Cart
+                    </div>
                 ) : (
                     ""
                 )}

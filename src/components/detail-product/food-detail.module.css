@@ -67,18 +67,18 @@
     text-align: center;
 }
 
-.food-actions button {
+/* .food-actions button {
     padding: 0.8rem 3rem;
     color: #fff;
     font-family: Plus Jakarta Sans;
     font-style: normal;
     font-weight: 600;
-    line-height: 1.625; /* 162.5% */
+    line-height: 1.625;
     background-color: var(--main-color);
     border: none;
     text-transform: uppercase;
     cursor: pointer;
-}
+} */
 
 .food-more-info {
     margin-top: 4rem;
