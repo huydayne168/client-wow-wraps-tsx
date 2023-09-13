@@ -1,0 +1,35 @@
+.heading {
+    font-family: Libre Bodoni;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.416667; /* 141.667% */
+    text-transform: capitalize;
+}
+
+.rate {
+    margin-top: 3.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rate span {
+    margin-bottom: 0.4rem;
+}
+
+.add-review textarea {
+    margin-top: 5rem;
+    width: 100% !important;
+}
+
+.add-button {
+    padding: 0.8rem 3rem;
+    background-color: var(--main-color);
+    border: none;
+    color: #fff;
+    font-family: Plus Jakarta Sans;
+    line-height: 1.625;
+    margin-top: 4.4rem;
+    cursor: pointer;
+}

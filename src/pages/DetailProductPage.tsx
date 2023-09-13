@@ -2,6 +2,7 @@ import React from "react";
 import FoodDetail from "../components/detail-product/FoodDetail";
 import DescAndReview from "../components/detail-product/DescAndReview";
 import Related from "../components/detail-product/Related";
+import { useTime } from "../hooks/useTime";
 // import { useLocation } from "react-router-dom";
 const DetailProductPage: React.FC<{}> = () => {
     // const location = useLocation();
@@ -22,7 +23,7 @@ const DetailProductPage: React.FC<{}> = () => {
         reviews: [
             {
                 _id: "abc",
-                date: new Date().toISOString(),
+                date: useTime().date,
                 reviewContent: "this iis so good",
                 rate: 5,
                 user: {

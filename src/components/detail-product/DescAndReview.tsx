@@ -3,6 +3,7 @@ import styles from "./desc-and-review.module.css";
 import { Food } from "../../models/food";
 import Description from "./Description";
 import ReviewComp from "./ReviewComp";
+import AddReview from "./AddReview";
 
 const DescAndReview: React.FC<{ food: Food }> = ({ food }) => {
     const compInitState = "DESCRIPTION";
@@ -56,7 +57,10 @@ const DescAndReview: React.FC<{ food: Food }> = ({ food }) => {
                 {compState === "DESCRIPTION" ? (
                     <Description content={food.longDescription} />
                 ) : (
-                    <ReviewComp reviews={food.reviews} />
+                    <>
+                        <ReviewComp reviews={food.reviews} />
+                        <AddReview />
+                    </>
                 )}
             </div>
         </div>

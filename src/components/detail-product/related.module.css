@@ -1,4 +1,5 @@
 .related {
+    margin-top: 10rem;
     color: var(--White, #fff);
 }
 .heading,
@@ -42,4 +43,14 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid var(--paragraph-color);
+}
+
+@media screen and (max-width: 576px) {
+    .related {
+        margin-top: 4rem;
+    }
+    .related-list {
+        flex-direction: column;
+        gap: 2.4rem;
+    }
 }
