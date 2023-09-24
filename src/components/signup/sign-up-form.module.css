@@ -1,0 +1,66 @@
+.sign-up-form h1 {
+    font-size: 4rem;
+}
+
+.sign-up-form form {
+    width: 100%;
+    margin-top: 2.4rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    padding: 4rem;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    font-family: Plus Jakarta Sans;
+    font-size: 1.4rem;
+}
+
+.sign-up-form form .controls {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.sign-up-form form .controls label {
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1; /* 130% */
+    color: #fff;
+}
+
+.sign-up-form form input {
+    width: 36rem;
+}
+
+.more {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    color: #fff;
+}
+
+.more a {
+    color: #0064d1;
+}
+
+.sign-up-form form button {
+    margin-top: 6rem;
+}
+
+.err-input {
+    border-bottom: 1px solid red !important;
+}
+
+.err-msg {
+    /* position: absolute;
+    left: calc(100% + 4rem);
+    bottom: 0; */
+    color: #fff;
+    padding: 1.2rem 2rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid #fff;
+    border-radius: 4px;
+    white-space: nowrap;
+}

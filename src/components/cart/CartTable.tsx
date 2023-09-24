@@ -13,9 +13,7 @@ import { Cart } from "../../models/cart";
 import { useNavigate } from "react-router-dom";
 const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
     const navigate = useNavigate();
-    const gotoCheckout = useCallback(() => {
-        navigate("/checkout-page");
-    }, []);
+
     const cartDemo = useMemo(() => {
         return {
             _id: "1222",
@@ -36,7 +34,7 @@ const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
                         reviews: [
                             {
                                 _id: "abc",
-                                date: new Date().toISOString,
+                                date: "04/07",
                                 reviewContent: "this iis so good",
                                 rate: 5,
                                 user: {
@@ -66,7 +64,7 @@ const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
                         reviews: [
                             {
                                 _id: "abc",
-                                date: new Date().toISOString,
+                                date: "04/07",
                                 reviewContent: "this iis so good",
                                 rate: 5,
                                 user: {
@@ -96,7 +94,7 @@ const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
                         reviews: [
                             {
                                 _id: "abc",
-                                date: new Date().toISOString,
+                                date: "04/07",
                                 reviewContent: "this iis so good",
                                 rate: 5,
                                 user: {
@@ -126,7 +124,7 @@ const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
                         reviews: [
                             {
                                 _id: "abc",
-                                date: new Date().toISOString,
+                                date: "04/07",
                                 reviewContent: "this iis so good",
                                 rate: 5,
                                 user: {
@@ -144,6 +142,10 @@ const CartTable: React.FC<{ cart?: Cart }> = ({ cart }) => {
             ],
         };
     }, []);
+
+    const gotoCheckout = useCallback(() => {
+        navigate("/checkout-page", { state: cartDemo });
+    }, [navigate, cartDemo]);
 
     return (
         <div className={`${styles["cart-table"]} content-container`}>

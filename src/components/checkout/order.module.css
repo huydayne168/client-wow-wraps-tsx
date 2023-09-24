@@ -1,0 +1,49 @@
+.order {
+    padding: 2.8rem;
+    flex: 1;
+    color: var(--white-80, rgba(255, 255, 255, 0.8));
+    font-family: Plus Jakarta Sans;
+    font-style: normal;
+    line-height: 1.625;
+    border: 1px solid var(--paragraph-color);
+    border-radius: 0.4rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    /* opacity: 0.3; */
+}
+
+.heading {
+    color: var(--White, #fff);
+    font-family: Libre Bodoni;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.33333; /* 133.333% */
+}
+
+.order-list {
+    margin-top: 3.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    justify-content: space-between;
+}
+
+.order-list tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-list tr:first-child,
+.order-list tr:last-child {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.order-list tr:not(:last-child) {
+    border-bottom: 1px solid var(--paragraph-color);
+}
+
+.order-list th {
+    text-align: start;
+    padding-bottom: 1.8rem;
+}

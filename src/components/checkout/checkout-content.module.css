@@ -1,0 +1,9 @@
+.checkout-content {
+    margin-top: 12.6rem;
+}
+
+.main-content {
+    margin-top: 6rem;
+    display: flex;
+    gap: 13rem;
+}

@@ -8,6 +8,9 @@ import { useAppDispatch } from "./hooks/store-hooks";
 import MenuPage from "./pages/MenuPage";
 import DetailProductPage from "./pages/DetailProductPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 function App() {
     // const screenWidth = useSelector((state: any) => state.screenWidth);
     const dispatch = useAppDispatch();
@@ -25,6 +28,15 @@ function App() {
             });
     }, [dispatch]);
     const route = createBrowserRouter([
+        {
+            path: "/login",
+            element: <Login />,
+        },
+
+        {
+            path: "/sign-up",
+            element: <SignUp />,
+        },
         {
             element: <RootLayOut />,
             path: "",
@@ -44,6 +56,10 @@ function App() {
                 {
                     element: <CartPage />,
                     path: "/cart-page",
+                },
+                {
+                    element: <CheckoutPage />,
+                    path: "/checkout-page",
                 },
             ],
         },

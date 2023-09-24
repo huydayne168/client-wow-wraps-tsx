@@ -5,6 +5,9 @@ import Logo from "../../../asset/asset/Logo";
 import TimeOpen from "./TimeOpen";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 const NavigationBar: React.FC<{}> = () => {
     const navigate = useNavigate();
 
@@ -23,6 +26,10 @@ const NavigationBar: React.FC<{}> = () => {
                 {screenWidth ? (
                     <div className={styles["cart-nav"]} onClick={gotoCartPage}>
                         Your Cart
+                        <FontAwesomeIcon icon={faCartShopping} />
+                        <motion.span
+                            className={styles["cart-count"]}
+                        ></motion.span>
                     </div>
                 ) : (
                     ""
