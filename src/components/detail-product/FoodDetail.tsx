@@ -30,7 +30,7 @@ const FoodDetail: React.FC<{ food: Food }> = ({ food }) => {
     return (
         <div className={`${styles["food-detail"]} content-container`}>
             <div className={styles["food-img"]}>
-                <img src={food.images} alt={food.name} />
+                <img src={food.image} alt={food.name} />
             </div>
             <div className={styles["food-desc"]}>
                 <h1 className={`content-heading ${styles.name}`}>

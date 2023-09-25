@@ -38,9 +38,9 @@ const DetailProductPage: React.FC<{}> = () => {
     };
     return (
         <div className="checkout-page">
-            <FoodDetail food={food} />
+            {/* <FoodDetail food={food} />
             <DescAndReview food={food} />
-            <Related />
+            <Related /> */}
         </div>
     );
 };

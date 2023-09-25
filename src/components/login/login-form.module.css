@@ -42,3 +42,15 @@
 .login-form form button {
     margin-top: 6rem;
 }
+
+.err-msg {
+    /* position: absolute;
+    left: calc(100% + 4rem);
+    bottom: 0; */
+    color: #fff;
+    padding: 1.2rem 2rem;
+    background-color: #ffcccc;
+    border: 1px solid red;
+    border-radius: 4px;
+    white-space: nowrap;
+}

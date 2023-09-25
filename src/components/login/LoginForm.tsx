@@ -1,18 +1,28 @@
 import React, { useCallback, useState } from "react";
 import styles from "./login-form.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import http from "../../utils/http";
+import { useAppDispatch } from "../../hooks/store-hooks";
+import { curUserActions } from "../../stores/store-toolkit";
+import { AxiosError } from "axios";
 
 const LoginForm: React.FC<{}> = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
     const [formData, setFormData] = useState({
-        email: "",
+        email: localStorage.getItem("email") || "",
         password: "",
     });
     console.log(formData);
 
+    const [errMess, setErrMess] = useState("");
+
     // function to handle email input
     const onChangeEmail = useCallback((text: string) => {
         setFormData((prev) => {
+            localStorage.setItem("email", text);
             return { ...prev, email: text };
         });
     }, []);
@@ -23,6 +33,42 @@ const LoginForm: React.FC<{}> = () => {
             return { ...prev, password: text };
         });
     }, []);
+
+    const submitHandler = useCallback(async () => {
+        try {
+            const res = await http.post(
+                "/user/login",
+                {
+                    email: formData.email,
+                    password: formData.password,
+                },
+                {
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true,
+                }
+            );
+
+            console.log(res);
+
+            const userInfo = res.data?.userInfo;
+            const accessToken = res.data?.accessToken;
+            dispatch(
+                curUserActions.storeUser({
+                    _id: userInfo._id,
+                    accessToken: accessToken,
+                })
+            );
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+            if (error instanceof AxiosError) {
+                if (error.status === 401) {
+                    setErrMess("Email or password is not correct!");
+                }
+            }
+        }
+    }, [formData.email, formData.password, errMess]);
+
     return (
         <motion.div
             whileInView="visible"
@@ -35,6 +81,18 @@ const LoginForm: React.FC<{}> = () => {
         >
             <h1 className="content-heading">Login</h1>
             <form action="#">
+                {errMess ? (
+                    <motion.p
+                        transition={{ duration: 0.1 }}
+                        initial={{ opacity: 0, scale: 0.4 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className={styles["err-msg"]}
+                    >
+                        {errMess}
+                    </motion.p>
+                ) : (
+                    ""
+                )}
                 <div className={styles["controls"]}>
                     <label htmlFor="email">Email</label>
                     <input
@@ -73,7 +131,15 @@ const LoginForm: React.FC<{}> = () => {
                     <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
 
-                <button className="button">Log In</button>
+                <button
+                    className="button"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        submitHandler();
+                    }}
+                >
+                    Log In
+                </button>
             </form>
         </motion.div>
     );

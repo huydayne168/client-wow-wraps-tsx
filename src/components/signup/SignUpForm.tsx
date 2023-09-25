@@ -12,16 +12,16 @@ const SignUpForm: React.FC<{}> = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const [signUpState, setSignUpState] = useState("SIGN_UP_FORM"); // 2 case : signUp form and verify code form
     const formDataStored: any = JSON.parse(
-        localStorage.getItem("fromData") || "{}"
+        localStorage.getItem("formData") || "{}"
     );
+
     const [formData, setFormData] = useState({
-        email: formDataStored.userName || "",
+        email: formDataStored.email || "",
         password: formDataStored.password || "",
         userName: formDataStored.userName || "",
         phoneNumber: formDataStored.phoneNumber || "",
         verifyCode: formDataStored.verifyCode || "",
     });
-    console.log(formData);
 
     const [emailValid, setEmailValid] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
@@ -44,7 +44,6 @@ const SignUpForm: React.FC<{}> = () => {
     }, []);
 
     useEffect(() => {
-        console.log(emailRegex);
         if (!formData.email.match(emailRegex)) {
             setEmailValid(false);
         } else {

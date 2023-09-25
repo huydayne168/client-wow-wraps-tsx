@@ -20,11 +20,48 @@ const screenWidth = createSlice({
 });
 export const screenActions = screenWidth.actions;
 
+////// Authentication store:
+const id = localStorage.getItem("currentUserId");
+let authInit = {
+    _id: id || "",
+    accessToken: "",
+};
+
+const currentUser = createSlice({
+    name: "currentUser",
+    initialState: authInit,
+    reducers: {
+        storeUser(state, action) {
+            localStorage.setItem("currentUserId", action.payload._id);
+            return (state = {
+                _id: action.payload._id,
+                accessToken: action.payload.accessToken,
+            });
+        },
+
+        storeNewAccessToken(state, action) {
+            const newState = { ...state, accessToken: action.payload };
+            return (state = newState);
+        },
+
+        logout(state) {
+            state = {
+                _id: "",
+                accessToken: "",
+            };
+            localStorage.removeItem("currentUserId");
+        },
+    },
+});
+
+export const curUserActions = currentUser.actions;
+
 ///////////////////////////////////////////////
 // store all slices:
 const store = configureStore({
     reducer: {
         screenWidth: screenWidth.reducer,
+        currentUser: currentUser.reducer,
     },
 });
 export type RootState = ReturnType<typeof store.getState>;

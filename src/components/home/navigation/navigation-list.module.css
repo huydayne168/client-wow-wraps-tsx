@@ -12,6 +12,7 @@
     color: #fff;
 }
 
+.profile:hover,
 .nav-item:hover {
     color: var(--main-color);
     cursor: pointer;

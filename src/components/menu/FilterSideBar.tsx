@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./filter-side-bar.module.css";
+import { useSearchParams } from "react-router-dom";
 function FilterSideBar() {
+    const [search, setSearch] = useSearchParams();
+
+    const searchHandler = useCallback(
+        (text: string) => {
+            if (text.length === 0) {
+                search.delete("nameQuery");
+                setSearch(search, {
+                    replace: true,
+                });
+            } else {
+                search.set("nameQuery", text);
+                setSearch(search, {
+                    replace: true,
+                });
+            }
+        },
+        [search]
+    );
     return (
         <div className={styles["filter-side-bar"]}>
             <form action="#">
@@ -10,6 +29,10 @@ function FilterSideBar() {
                         name="search"
                         id="search"
                         placeholder="Search food here..."
+                        defaultValue={search.get("nameQuery") || undefined}
+                        onChange={(e) => {
+                            searchHandler(e.target.value);
+                        }}
                     />
 
                     {/* search icon */}
@@ -40,7 +63,7 @@ function FilterSideBar() {
                         <label htmlFor="low-price">Low Price</label>
                         <input
                             type="checkbox"
-                            name="low-price"
+                            name="sortPrice"
                             id="low-price"
                             hidden
                         />
@@ -49,7 +72,7 @@ function FilterSideBar() {
                         <label htmlFor="high-price">High Price</label>
                         <input
                             type="checkbox"
-                            name="high-price"
+                            name="sortPrice"
                             id="high-price"
                             hidden
                         />

@@ -1,8 +1,8 @@
 import { type } from "os";
 import { Review } from "./review";
 export type Food = {
-    name: string;
     _id: string;
+    name: string;
     amount: number;
     price: number;
     rate: number;
@@ -11,5 +11,5 @@ export type Food = {
     category: string;
     tags: string[];
     reviews: Review[];
-    images: string;
+    image: string;
 };

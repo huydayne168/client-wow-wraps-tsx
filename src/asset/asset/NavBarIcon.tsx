@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./nav-bar-icon.module.css";
 function NavBarIcon() {
     return (
         <svg
@@ -8,6 +8,7 @@ function NavBarIcon() {
             height="16"
             viewBox="0 0 24 16"
             fill="none"
+            className={styles["icon"]}
         >
             <path
                 d="M12 16H0V13.3333H12V16ZM24 9.33333H0V6.66667H24V9.33333ZM24 2.66667H12V0H24V2.66667Z"

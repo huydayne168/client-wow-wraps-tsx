@@ -1,8 +1,15 @@
 import { type } from "os";
+import { Cart } from "./cart";
+import { Checkout } from "./checkout";
 
 export type User = {
     _id: string;
     userName: string;
-    avatar: string; // this is an image path;
     email: string;
+    password: string;
+    phoneNumber: string;
+    cart: Cart[];
+    checkout: Checkout[];
+    refreshToken?: string;
+    roles?: {};
 };

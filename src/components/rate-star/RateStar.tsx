@@ -9,7 +9,7 @@ const RateStar: React.FC<{ ratePoint?: number }> = ({ ratePoint }) => {
     }
     return (
         <div className={styles["rate-star"]}>
-            {!ratePoint
+            {!ratePoint && ratePoint !== 0
                 ? points.map((point, index) => {
                       return (
                           <Star
@@ -25,7 +25,7 @@ const RateStar: React.FC<{ ratePoint?: number }> = ({ ratePoint }) => {
                           <Star
                               key={point}
                               point={point}
-                              color={pointIndex > index ? "#FB8F2C" : "#828282"} // if point > index so I pass the suitable color to add to fill attribute
+                              color={pointIndex > index ? "#FB8F2C" : "#828282"}
                           />
                       );
                   })}

@@ -4,7 +4,7 @@
     color: var(--paragraph-color);
     /* H4 */
     font-family: Libre Bodoni;
-    font-size: 3rem;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
     line-height: 40px;
@@ -24,6 +24,12 @@
 }
 
 .filter-top-bar ul li:hover {
+    color: var(--main-color);
+    cursor: pointer;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.filter-top-bar ul li.active {
     color: var(--main-color);
     cursor: pointer;
     border-bottom: 1px solid var(--main-color);

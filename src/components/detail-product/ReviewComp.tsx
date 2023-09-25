@@ -9,7 +9,7 @@ const ReviewComp: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
                 return (
                     <div key={review._id} className={styles["review-item"]}>
                         <div className={styles["avatar"]}>
-                            <img src={review.user.avatar} alt="avatar" />
+                            <img src={""} alt="avatar" />
                         </div>
                         <div className={styles["desc"]}>
                             <div className={styles.top}>
