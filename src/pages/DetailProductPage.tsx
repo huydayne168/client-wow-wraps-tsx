@@ -22,7 +22,6 @@ const DetailProductPage: React.FC<{}> = () => {
                         category: product.category,
                     },
                 });
-                console.log(res.data);
 
                 setRelatedProducts(res.data);
             } catch (error) {

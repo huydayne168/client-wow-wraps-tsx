@@ -13,7 +13,6 @@ import "swiper/css";
 function VisitRestaurant() {
     const screenWidth = useAppSelector((state) => state.screenWidth);
 
-    console.log(screenWidth);
     return (
         <div className={`${styles["visit-restaurant"]} content-container`}>
             <h3 className="content-heading">Visit Our Restaurant</h3>
@@ -36,15 +35,7 @@ function VisitRestaurant() {
                     <img src={img5} alt="" />
                 </div>
             ) : (
-                <Swiper
-                // install Swiper modules
-                // modules={[Pagination]}
-                // spaceBetween={50}
-                // slidesPerView={3}
-                // pagination={{ clickable: true }}
-                // onSwiper={(swiper) => console.log(swiper)}
-                // onSlideChange={() => console.log("slide change")}
-                >
+                <Swiper>
                     <SwiperSlide>
                         <img
                             src={img1}

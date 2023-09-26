@@ -33,13 +33,13 @@
     justify-content: space-between;
 }
 
-.order-list tr:first-child,
-.order-list tr:last-child {
+.order-list tbody:first-child,
+.order-list tbody:last-child {
     color: #fff;
     font-size: 2rem;
 }
 
-.order-list tr:not(:last-child) {
+.order-list tbody:not(:last-child) {
     border-bottom: 1px solid var(--paragraph-color);
 }
 

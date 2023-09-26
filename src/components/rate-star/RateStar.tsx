@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import styles from "./rate-star.module.css";
 import Star from "./Star";
-const RateStar: React.FC<{ ratePoint?: number }> = ({ ratePoint }) => {
+const RateStar: React.FC<{ ratePoint?: number; submitPoint?: Function }> = ({
+    ratePoint,
+    submitPoint,
+}) => {
     const points = [1, 2, 3, 4, 5];
     const [pointIndex, setPointIndex] = useState(ratePoint || 0); // check if we pass ratePoint prop or not?
     function changePoint(point: number) {
         setPointIndex(point);
+        if (submitPoint) {
+            submitPoint(Number(point));
+        }
     }
+    console.log(pointIndex);
+
     return (
         <div className={styles["rate-star"]}>
             {!ratePoint && ratePoint !== 0

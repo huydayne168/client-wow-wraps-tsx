@@ -26,14 +26,12 @@ const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
     }, [navigate]);
 
     const gotoYourCart = useCallback(() => {
-        navigate("/your-cart");
+        navigate("/cart-page");
     }, [navigate]);
 
     const openNav = useCallback(() => {
         setNavIsOpen(!navIsOpen);
     }, [navIsOpen]);
-
-    console.log(currentUser);
 
     // LOGOUT:
     const logoutHandler = useCallback(async () => {

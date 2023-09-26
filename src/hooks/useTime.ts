@@ -19,7 +19,7 @@ export const useTime = () => {
     const date = `${day}, ${today.getDate()} ${today.toLocaleDateString(
         locale,
         { month: "long" }
-    )}\n\n`;
+    )} ${today.toLocaleDateString(locale, { year: "numeric" })}\n\n`;
 
     const hour = today.getHours();
     const wish = `${

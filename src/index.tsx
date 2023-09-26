@@ -6,15 +6,27 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./stores/store-toolkit";
 import { useLayoutEffect } from "react";
+import { Toaster } from "react-hot-toast";
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </React.StrictMode>
+    <Provider store={store}>
+        <App />
+        <Toaster
+            toastOptions={{
+                className: "",
+                style: {
+                    border: "1px solid #713200",
+                    padding: "16px",
+                    color: "#fff",
+                    fontFamily: "Plus Jakarta Sans",
+                    backgroundColor: "#fb8f2c",
+                },
+            }}
+            position="top-right"
+        />
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -2,9 +2,10 @@ import { type } from "os";
 import { User } from "./user";
 import { Food } from "./food";
 
-type FoodInCart = {
-    food: Food;
-    amount: number;
+export type FoodInCart = {
+    _id: string;
+    product: Food;
+    quantity: number;
 };
 
 export type Cart = {

@@ -41,8 +41,6 @@ function FilterTopBar() {
         [search]
     );
 
-    console.log(search.toString());
-
     return (
         <div className={styles["filter-top-bar"]}>
             {isLoading ? (

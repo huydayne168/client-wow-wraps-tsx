@@ -3,10 +3,14 @@ import styles from "./food-detail.module.css";
 import { Food } from "../../models/food";
 import RateStar from "../rate-star/RateStar";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../hooks/store-hooks";
+import usePrivateHttp from "../../hooks/usePrivateHttp";
+import toast from "react-hot-toast";
 const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState(1);
-
+    const currentUser = useAppSelector((state) => state.currentUser);
+    const privateHttp = usePrivateHttp();
     const plusAmount = useCallback(() => {
         setAmount((amount) => amount + 1);
     }, []);
@@ -17,15 +21,20 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
         }
     }, [amount]);
 
-    // function to go to cart page and also pass the cart information:
-    type GoToCartPage = () => (e: React.MouseEvent) => void;
-    const gotoCartPage: GoToCartPage = useCallback(
-        () => (e) => {
-            e.preventDefault();
-            navigate("/cart-page"); // add {state: ...} as a second parameter to send cart data
-        },
-        [navigate]
-    );
+    // function to add item to cart
+    const addToCartHandler = useCallback(async () => {
+        try {
+            const res = await privateHttp.post("/user/add-to-cart", {
+                userId: currentUser._id,
+                product: product._id,
+                quantity: amount,
+            });
+            console.log(res);
+            toast.success("Added Success!");
+        } catch (error) {
+            console.log(error);
+        }
+    }, [amount, product._id, currentUser._id]);
 
     return (
         <div className={`${styles["food-detail"]} content-container`}>
@@ -69,7 +78,13 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
                         </thead>
                     </table>
 
-                    <button className="button" onClick={gotoCartPage}>
+                    <button
+                        className="button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            addToCartHandler();
+                        }}
+                    >
                         Add to cart
                     </button>
                 </form>

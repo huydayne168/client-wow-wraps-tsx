@@ -38,7 +38,6 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                 const res = await http.get("/api/product/get-products", {
                     params: search || null,
                 });
-                console.log(res.data);
                 if (res.data.isLastPage) {
                     setIsLastPage(true);
                     setProducts(res.data.products);

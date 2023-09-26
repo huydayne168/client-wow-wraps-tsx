@@ -1,9 +1,11 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useEffect, useState } from "react";
 import styles from "./desc-and-review.module.css";
 import { Food } from "../../models/food";
 import Description from "./Description";
 import ReviewComp from "./ReviewComp";
 import AddReview from "./AddReview";
+import http from "../../utils/http";
+import { Review } from "../../models/review";
 
 const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
     const compInitState = "DESCRIPTION";
@@ -20,11 +22,34 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
         },
         []
     );
-
     const [compState, compStateDispatch] = useReducer(
         compReducer,
         compInitState
     );
+
+    const [reviews, setReviews] = useState<Review[]>([]);
+    function addAReview(review: Review) {
+        setReviews((pre) => [review, ...pre]);
+    }
+
+    useEffect(() => {
+        const getReviews = async () => {
+            try {
+                const res = await http.get("/api/product/get-reviews", {
+                    params: {
+                        productId: product._id,
+                    },
+                });
+                console.log(res.data);
+
+                setReviews(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getReviews();
+    }, [product._id]);
+
     return (
         <div className={`${styles["desc-and-review"]} content-container`}>
             <div className={styles["nav-bar"]}>
@@ -49,7 +74,7 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
                             compStateDispatch({ type: "REVIEW" });
                         }}
                     >
-                        Review({product.reviews.length})
+                        Review({reviews.length})
                     </li>
                 </ul>
             </div>
@@ -58,8 +83,11 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
                     <Description content={product.longDescription} />
                 ) : (
                     <>
-                        <ReviewComp reviews={product.reviews} />
-                        <AddReview />
+                        <ReviewComp reviews={reviews} />
+                        <AddReview
+                            addReview={addAReview}
+                            productId={product._id}
+                        />
                     </>
                 )}
             </div>

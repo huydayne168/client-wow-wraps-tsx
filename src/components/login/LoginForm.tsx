@@ -15,7 +15,6 @@ const LoginForm: React.FC<{}> = () => {
         email: localStorage.getItem("email") || "",
         password: "",
     });
-    console.log(formData);
 
     const [errMess, setErrMess] = useState("");
 
@@ -47,8 +46,6 @@ const LoginForm: React.FC<{}> = () => {
                     withCredentials: true,
                 }
             );
-
-            console.log(res);
 
             const userInfo = res.data?.userInfo;
             const accessToken = res.data?.accessToken;

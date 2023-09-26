@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import styles from "./order.module.css";
-import { Cart } from "../../models/cart";
-const Order: React.FC<{ cart: Cart }> = ({ cart }) => {
+import { Cart, FoodInCart } from "../../models/cart";
+const Order: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
     const totalPrice = useMemo(() => {
-        return cart.foods.reduce<number>((init, food) => {
-            return init + food.amount * food.food.price;
+        return cart.reduce<number>((init, item) => {
+            return init + item.quantity * item.product.price;
         }, 0);
     }, [cart]);
 
@@ -13,30 +13,31 @@ const Order: React.FC<{ cart: Cart }> = ({ cart }) => {
             <h3 className={styles["heading"]}>Your order</h3>
 
             <table className={styles["order-list"]}>
-                <tr>
-                    <th>Food</th>
-                    <th>Subtotal</th>
-                </tr>
-                {cart.foods.map((food) => {
+                <tbody>
+                    <tr>
+                        <th>Food</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </tbody>
+                {cart.map((item) => {
                     return (
-                        <tr>
-                            <th>
-                                {food.food.name} x {food.amount}
-                            </th>
-                            <th>${food.food.price * food.amount}</th>
-                        </tr>
+                        <tbody key={item.product._id}>
+                            <tr>
+                                <th>
+                                    {item.product.name} x {item.quantity}
+                                </th>
+                                <th>${item.product.price * item.quantity}</th>
+                            </tr>
+                        </tbody>
                     );
                 })}
 
-                <tr>
-                    <th>Shipping</th>
-                    <th>$6</th>
-                </tr>
-
-                <tr>
-                    <th>Total</th>
-                    <th>${totalPrice}</th>
-                </tr>
+                <tbody className={styles["total"]}>
+                    <tr>
+                        <th>Total</th>
+                        <th>${totalPrice}</th>
+                    </tr>
+                </tbody>
             </table>
         </div>
     );
