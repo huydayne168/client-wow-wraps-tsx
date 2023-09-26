@@ -4,9 +4,6 @@ import FilterTopBar from "./FilterTopBar";
 import FilterSideBar from "./FilterSideBar";
 import FoodListWrapper from "./FoodListWrapper";
 function MainMenu() {
-    // fetch food here:
-
-    ////////////////
     return (
         <div className={styles["main-menu"]}>
             <FilterTopBar />

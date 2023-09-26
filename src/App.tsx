@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+
 function App() {
     // const screenWidth = useSelector((state: any) => state.screenWidth);
     const dispatch = useAppDispatch();
@@ -64,6 +65,7 @@ function App() {
             ],
         },
     ]);
+
     return <RouterProvider router={route} />;
 }
 

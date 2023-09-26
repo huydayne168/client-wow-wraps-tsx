@@ -3,7 +3,7 @@ import styles from "./food-detail.module.css";
 import { Food } from "../../models/food";
 import RateStar from "../rate-star/RateStar";
 import { useNavigate } from "react-router-dom";
-const FoodDetail: React.FC<{ food: Food }> = ({ food }) => {
+const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState(1);
 
@@ -30,23 +30,23 @@ const FoodDetail: React.FC<{ food: Food }> = ({ food }) => {
     return (
         <div className={`${styles["food-detail"]} content-container`}>
             <div className={styles["food-img"]}>
-                <img src={food.image} alt={food.name} />
+                <img src={product.image} alt={product.name} />
             </div>
             <div className={styles["food-desc"]}>
                 <h1 className={`content-heading ${styles.name}`}>
-                    {food.name}
+                    {product.name}
                 </h1>
                 <div className={styles["food-rate"]}>
-                    <RateStar ratePoint={food.rate} />
+                    <RateStar ratePoint={product.rate} />
                     <p className={styles["review-count"]}>
-                        ({food.reviews.length} customers review)
+                        ({product.reviews.length} customers review)
                     </p>
                 </div>
                 <div className={`content-heading ${styles["food-price"]}`}>
-                    ${food.price}
+                    ${product.price}
                 </div>
                 <div className={styles["food-text"]}>
-                    {food.shortDescription}
+                    {product.shortDescription}
                 </div>
                 <form className={styles["food-actions"]}>
                     <table className={styles["change-amount"]}>
@@ -76,14 +76,14 @@ const FoodDetail: React.FC<{ food: Food }> = ({ food }) => {
 
                 <div className={styles["food-more-info"]}>
                     <div>
-                        <span>ID:</span> {food._id}
+                        <span>ID:</span> {product._id}
                     </div>
                     <div>
-                        <span>category:</span> {food.category}
+                        <span>category:</span> {product.category}
                     </div>
                     <div>
                         <span>tags:</span>
-                        {food.tags.map((tag) => `${tag},`)}
+                        {product.tags.map((tag) => `${tag},`)}
                     </div>
                 </div>
             </div>

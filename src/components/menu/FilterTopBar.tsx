@@ -5,15 +5,13 @@ import { useSearchParams } from "react-router-dom";
 function FilterTopBar() {
     const [search, setSearch] = useSearchParams();
     const [categories, setCategories] = useState<string[] | null>([]);
-    const [active, setActive] = useState(search.get("category"));
+    const [active, setActive] = useState<string | null>(
+        search.get("category") || "All"
+    );
     const [isLoading, setIsLoading] = useState(false);
 
     // we can fetch all category after:
     useEffect(() => {
-        search.set("category", "All");
-        setSearch(search, {
-            replace: true,
-        });
         const getCategories = async () => {
             setIsLoading(true);
             try {

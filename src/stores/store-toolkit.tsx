@@ -45,11 +45,11 @@ const currentUser = createSlice({
         },
 
         logout(state) {
-            state = {
+            localStorage.removeItem("currentUserId");
+            return (state = {
                 _id: "",
                 accessToken: "",
-            };
-            localStorage.removeItem("currentUserId");
+            });
         },
     },
 });

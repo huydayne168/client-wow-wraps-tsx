@@ -1,8 +1,21 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./filter-side-bar.module.css";
 import { useSearchParams } from "react-router-dom";
 function FilterSideBar() {
     const [search, setSearch] = useSearchParams();
+    const [sortRate, setSortRate] = useState(false);
+    const [sortLowPrice, setSortLowPrice] = useState(false);
+    const [sortHighPrice, setSortHighPrice] = useState(false);
+
+    useEffect(() => {
+        search.set("sortRate", sortRate.toString());
+        search.set("sortLowPrice", sortLowPrice.toString());
+        search.set("sortHighPrice", sortHighPrice.toString());
+
+        setSearch(search, {
+            replace: true,
+        });
+    }, [sortRate, sortHighPrice, sortLowPrice]);
 
     const searchHandler = useCallback(
         (text: string) => {
@@ -18,8 +31,19 @@ function FilterSideBar() {
                 });
             }
         },
-        [search]
+        [search, setSearch]
     );
+
+    const sortHandler = useCallback(
+        (sortType: string) => {
+            search.set("sort", sortType);
+            setSearch(search, {
+                replace: true,
+            });
+        },
+        [search, setSearch]
+    );
+
     return (
         <div className={styles["filter-side-bar"]}>
             <form action="#">
@@ -50,32 +74,35 @@ function FilterSideBar() {
 
                 <ul className={styles["sort-side"]}>
                     {/* user can choose more than one at the same sorting action */}
-                    <li>
-                        <label htmlFor="top-rate">Top Rate</label>
-                        <input
-                            type="checkbox"
-                            name="top-rate"
-                            id="top-rate"
-                            hidden
-                        />
+                    <li
+                        onClick={() => {
+                            setSortRate((prev) => !prev);
+                            setSortHighPrice(false);
+                            setSortLowPrice(false);
+                        }}
+                        className={sortRate ? styles["active"] : ""}
+                    >
+                        Top Rate
                     </li>
-                    <li>
-                        <label htmlFor="low-price">Low Price</label>
-                        <input
-                            type="checkbox"
-                            name="sortPrice"
-                            id="low-price"
-                            hidden
-                        />
+                    <li
+                        onClick={() => {
+                            setSortLowPrice((prev) => !prev);
+                            setSortHighPrice(false);
+                            setSortRate(false);
+                        }}
+                        className={sortLowPrice ? styles["active"] : ""}
+                    >
+                        Low Price
                     </li>
-                    <li>
-                        <label htmlFor="high-price">High Price</label>
-                        <input
-                            type="checkbox"
-                            name="sortPrice"
-                            id="high-price"
-                            hidden
-                        />
+                    <li
+                        onClick={() => {
+                            setSortHighPrice((prev) => !prev);
+                            setSortLowPrice(false);
+                            setSortRate(false);
+                        }}
+                        className={sortHighPrice ? styles["active"] : ""}
+                    >
+                        High Price
                     </li>
                 </ul>
             </form>

@@ -6,7 +6,9 @@ import OpenTime from "../components/home/open-time/OpenTime";
 import VisitRestaurant from "../components/home/visit-restaurant/VisitRestaurant";
 import Blog from "../components/home/blog/Blog";
 import Subcribe from "../components/home/subcribe/Subcribe";
+import useScrollToTop from "../hooks/useScrollToTop";
 function HomePage() {
+    useScrollToTop();
     return (
         <div className="home-page">
             <Banner />

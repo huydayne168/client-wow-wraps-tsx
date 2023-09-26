@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./most-popular-food.module.css";
 import img1 from "../../../asset/asset/popular-food1.png";
 import RateStar from "../../rate-star/RateStar";
+import http from "../../../utils/http";
+import { Food } from "../../../models/food";
+import { useNavigate } from "react-router-dom";
 function MostPopularFood() {
+    const navigate = useNavigate();
+    const [products, setProducts] = useState<Food[]>([]);
+    const gotoDetailPage = useCallback(
+        (product: Food) => {
+            navigate("/detail-page", {
+                state: {
+                    product,
+                },
+            });
+        },
+        [navigate]
+    );
+    useEffect(() => {
+        const getProducts = async () => {
+            try {
+                const res = await http.get("/api/product/get-products", {
+                    params: {
+                        sortRate: "true",
+                        page: "1",
+                    },
+                });
+                console.log(res.data);
+
+                setProducts(res.data.slice(0, 3)); // just get top 3 products
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getProducts();
+    }, []);
     return (
         <div className={`${styles["most-popular"]} content-container`}>
             <h3 className={`${styles["heading"]} content-heading`}>
@@ -15,85 +48,59 @@ function MostPopularFood() {
             </p>
 
             <ul className={styles["food-wrapper"]}>
-                <li className={styles["food-item"]}>
-                    <div className={styles["food-image"]}>
-                        <img src={img1} alt="" />
-                    </div>
+                {products &&
+                    products[0] &&
+                    products.map((product) => {
+                        return (
+                            <li
+                                key={product._id}
+                                className={styles["food-item"]}
+                                onClick={() => {
+                                    gotoDetailPage(product);
+                                }}
+                            >
+                                <div className={styles["food-image"]}>
+                                    <img src={product.image} alt="" />
+                                </div>
 
-                    <div className={styles["food-desc"]}>
-                        <div className={styles["food-desc--top"]}>
-                            <h4 className={styles["food-heading"]}>
-                                Schezwan Noodles
-                            </h4>
-                            <div className={styles["food-price"]}>$4</div>
-                        </div>
+                                <div className={styles["food-desc"]}>
+                                    <div className={styles["food-desc--top"]}>
+                                        <h4 className={styles["food-heading"]}>
+                                            {product.name}
+                                        </h4>
+                                        <div className={styles["food-price"]}>
+                                            ${product.price}
+                                        </div>
+                                    </div>
 
-                        <div className={styles["food-desc--body"]}>
-                            Fresh toasted sourdough bread with olive oil and
-                            pomegranate.
-                        </div>
+                                    <div className={styles["food-desc--body"]}>
+                                        {product.shortDescription}
+                                    </div>
 
-                        <div className={styles["food-desc--bottom"]}>
-                            <div className={styles.button}>Order Now</div>
-                            <RateStar ratePoint={3} />
-                        </div>
-                    </div>
-                </li>
-
-                <li className={styles["food-item"]}>
-                    <div className={styles["food-image"]}>
-                        <img src={img1} alt="" />
-                    </div>
-
-                    <div className={styles["food-desc"]}>
-                        <div className={styles["food-desc--top"]}>
-                            <h4 className={styles["food-heading"]}>
-                                Schezwan Noodles
-                            </h4>
-                            <div className={styles["food-price"]}>$4</div>
-                        </div>
-
-                        <div className={styles["food-desc--body"]}>
-                            Fresh toasted sourdough bread with olive oil and
-                            pomegranate.
-                        </div>
-
-                        <div className={styles["food-desc--bottom"]}>
-                            <div className={styles.button}>Order Now</div>
-                            <RateStar ratePoint={3} />
-                        </div>
-                    </div>
-                </li>
-
-                <li className={styles["food-item"]}>
-                    <div className={styles["food-image"]}>
-                        <img src={img1} alt="" />
-                    </div>
-
-                    <div className={styles["food-desc"]}>
-                        <div className={styles["food-desc--top"]}>
-                            <h4 className={styles["food-heading"]}>
-                                Schezwan Noodles
-                            </h4>
-                            <div className={styles["food-price"]}>$4</div>
-                        </div>
-
-                        <div className={styles["food-desc--body"]}>
-                            Fresh toasted sourdough bread with olive oil and
-                            pomegranate.
-                        </div>
-
-                        <div className={styles["food-desc--bottom"]}>
-                            <div className={styles.button}>Order Now</div>
-                            <RateStar ratePoint={3} />
-                        </div>
-                    </div>
-                </li>
+                                    <div
+                                        className={styles["food-desc--bottom"]}
+                                    >
+                                        <div className={styles.button}>
+                                            Order Now
+                                        </div>
+                                        <RateStar ratePoint={3} />
+                                    </div>
+                                </div>
+                            </li>
+                        );
+                    })}
             </ul>
 
             {/* actions */}
             <div className={styles["action"]}>
-                <button>Explore All Food</button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navigate("/menu");
+                    }}
+                >
+                    Explore All Food
+                </button>
                 {/* arrow */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

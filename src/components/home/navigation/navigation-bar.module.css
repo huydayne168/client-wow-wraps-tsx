@@ -15,7 +15,12 @@
     gap: 3.4rem;
 }
 
-.right-side > div:hover {
+.right-side > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.right-side > a:hover {
     color: var(--main-color);
     cursor: pointer;
 }
@@ -24,7 +29,7 @@
     display: flex;
     gap: 0.8rem;
 }
-
+.logout:hover,
 .cart-nav:hover {
     color: var(--main-color);
     cursor: pointer;

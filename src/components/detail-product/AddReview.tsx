@@ -14,7 +14,7 @@ const AddReview: React.FC<{}> = () => {
                     name="comment"
                     id="comment"
                     // cols={10}
-                    rows={5}
+                    rows={2}
                     placeholder="Tell everybody what you think about this food!"
                 ></textarea>
 

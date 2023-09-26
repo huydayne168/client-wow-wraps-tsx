@@ -9,17 +9,22 @@ import {
     faChevronLeft,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { log } from "console";
 import BarLoader from "react-spinners/BarLoader";
+import { motion } from "framer-motion";
+
 const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
     const navigate = useNavigate();
+    const [products, setProducts] = useState<Food[] | null>();
     const [isLastPage, setIsLastPage] = useState<boolean>(false);
     const [search, setSearch] = useSearchParams();
-    const [products, setProducts] = useState<Food[] | null>();
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {
+        search.set("category", "All");
+        setSearch(search, {
+            replace: true,
+        });
         search.set("page", currentPage.toString());
         setSearch(search, {
             replace: true,
@@ -51,7 +56,16 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
     }, [search]);
 
     // function to go to Detail page:
-    const gotoDetailPage = useCallback(() => {}, [navigate]);
+    const gotoDetailPage = useCallback(
+        (product: Food) => {
+            navigate("/detail-page", {
+                state: {
+                    product,
+                },
+            });
+        },
+        [navigate]
+    );
 
     // return TSX:
     return (
@@ -64,11 +78,14 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                         {products && products[0] ? (
                             products.map((product) => {
                                 return (
-                                    <li
+                                    <motion.li
+                                        transition={{ duration: 0.1 }}
+                                        initial={{ opacity: 0, scale: 0.4 }}
+                                        animate={{ opacity: 1, scale: 1 }}
                                         key={product._id}
                                         className={styles["food-list__item"]}
                                         onClick={() => {
-                                            gotoDetailPage();
+                                            gotoDetailPage(product);
                                         }}
                                     >
                                         <div className={styles["food-image"]}>
@@ -115,7 +132,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </motion.li>
                                 );
                             })
                         ) : (
@@ -128,7 +145,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
             )}
 
             <ul className={styles["pagination"]}>
-                {currentPage !== 1 ? (
+                {Number(search.get("page")) !== 1 ? (
                     <li
                         onClick={() => {
                             setCurrentPage((pre) => pre - 1);

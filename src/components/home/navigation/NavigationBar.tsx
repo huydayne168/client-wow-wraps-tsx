@@ -4,17 +4,23 @@ import NavigationList from "./NavigationList";
 import Logo from "../../../asset/asset/Logo";
 import TimeOpen from "./TimeOpen";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import http from "../../../utils/http";
 import { User } from "../../../models/user";
-import { useAppSelector } from "../../../hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/store-hooks";
+import usePrivateHttp from "../../../hooks/usePrivateHttp";
+import { curUserActions } from "../../../stores/store-toolkit";
 const NavigationBar: React.FC<{}> = () => {
+    const privateHttp = usePrivateHttp();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const currentUser = useAppSelector((state) => state.currentUser);
     const [currentUserInfo, setCurrentUserInfo] = useState<User | null>(null);
+    // get screenWidth :
+    const screenWidth = useSelector((state: any) => state.screenWidth);
     const gotoCartPage = useCallback(() => {
         navigate("/cart-page");
     }, [navigate]);
@@ -35,8 +41,18 @@ const NavigationBar: React.FC<{}> = () => {
         getCurrentUserInfo();
     }, []);
 
-    // get screenWidth :
-    const screenWidth = useSelector((state: any) => state.screenWidth);
+    // LOGOUT
+    const logoutHandler = useCallback(async () => {
+        try {
+            const res = await privateHttp.post("/user/logout");
+            console.log(res);
+            setCurrentUserInfo(null);
+            dispatch(curUserActions.logout());
+        } catch (error) {
+            console.log(error);
+        }
+    }, [dispatch, privateHttp]);
+
     return (
         <div className={`${styles["navigation-bar"]} content-container`}>
             <NavigationList currentUserInfo={currentUserInfo} />
@@ -44,7 +60,7 @@ const NavigationBar: React.FC<{}> = () => {
 
             {screenWidth ? (
                 <>
-                    {currentUserInfo ? (
+                    {currentUserInfo?._id ? (
                         <div className={styles["right-side"]}>
                             <div className={styles["user-profile"]}>
                                 {currentUserInfo.userName}
@@ -59,11 +75,21 @@ const NavigationBar: React.FC<{}> = () => {
                                     className={styles["cart-count"]}
                                 ></motion.span>
                             </div>
+                            <div
+                                className={styles["logout"]}
+                                onClick={logoutHandler}
+                            >
+                                Log out
+                            </div>
                         </div>
                     ) : (
                         <div className={styles["right-side"]}>
-                            <div className={styles["login"]}>Log In</div>
-                            <div className={styles["signUp"]}>Sign Up</div>
+                            <Link to={"/login"} className={styles["login"]}>
+                                Log In
+                            </Link>
+                            <Link to={"/sign-up"} className={styles["signUp"]}>
+                                Sign Up
+                            </Link>
                         </div>
                     )}
                 </>

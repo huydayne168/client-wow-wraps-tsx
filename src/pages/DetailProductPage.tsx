@@ -1,46 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FoodDetail from "../components/detail-product/FoodDetail";
 import DescAndReview from "../components/detail-product/DescAndReview";
 import Related from "../components/detail-product/Related";
 import { useTime } from "../hooks/useTime";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Food } from "../models/food";
+import http from "../utils/http";
+import useScrollToTop from "../hooks/useScrollToTop";
 const DetailProductPage: React.FC<{}> = () => {
-    // const location = useLocation();
-    // get food data from navigate hook from home page most popular food and menu page:
-    // const food = location.state;
-    // just a dummy food here:
-    const food = {
-        name: "Pho",
-        _id: "asdasdasd",
-        amount: 5,
-        price: 35,
-        rate: 4,
-        shortDescription: "this is the best food in VN",
-        longDescription:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sapiente repellat laborum enim rem. Minus possimus saepe assumenda facere consequatur? Dignissimos incidunt illo cum sit cupiditate eius accusantium, impedit quis! Deserunt eius, dolores dolor recusandae, tempore ab ipsum exercitationem, facilis velit aperiam nemo ipsam pariatur? Debitis sapiente omnis laboriosam eius.",
-        tags: ["yummy", "a little spicy"],
-        category: "Lunch",
-        reviews: [
-            {
-                _id: "abc",
-                date: useTime().date,
-                reviewContent: "this iis so good",
-                rate: 5,
-                user: {
-                    _id: "1",
-                    userName: "Huynguyen viet",
-                    avatar: "https://tse4.mm.bing.net/th?id=OIP.HgMixLfzHr2KOQyoJfbqwwHaHa&pid=Api&P=0&h=180",
-                    email: "huydayne1608@gmail.com",
-                },
-            },
-        ],
-        images: "https://tse3.mm.bing.net/th?id=OIP.BBCV7Fgtdg3PjEduyFAn3gHaE7&pid=Api&P=0&h=180",
-    };
+    useScrollToTop();
+    const location = useLocation();
+    const product: Food = location.state.product;
+    const [relatedProducts, setRelatedProducts] = useState<Food[]>([]);
+
+    useEffect(() => {
+        const getRelatedProducts = async () => {
+            try {
+                const res = await http.get("/api/product/related-products", {
+                    params: {
+                        productId: product._id,
+                        category: product.category,
+                    },
+                });
+                console.log(res.data);
+
+                setRelatedProducts(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getRelatedProducts();
+    }, [product]);
+
     return (
         <div className="checkout-page">
-            {/* <FoodDetail food={food} />
-            <DescAndReview food={food} />
-            <Related /> */}
+            <FoodDetail product={product} />
+            <DescAndReview product={product} />
+            <Related products={relatedProducts} />
         </div>
     );
 };

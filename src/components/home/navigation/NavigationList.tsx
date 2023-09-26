@@ -1,16 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./navigation-list.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBarIcon from "../../../asset/asset/NavBarIcon";
 import TimeOpen from "./TimeOpen";
-import { useAppSelector } from "../../../hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks/store-hooks";
 import { User } from "../../../models/user";
+import usePrivateHttp from "../../../hooks/usePrivateHttp";
+import { curUserActions } from "../../../stores/store-toolkit";
 const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
     currentUserInfo,
 }) => {
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const privateHttp = usePrivateHttp();
     const [navIsOpen, setNavIsOpen] = useState(false);
     const screenWidth = useAppSelector((state: any) => state.screenWidth);
+    const currentUser = useAppSelector((state) => state.currentUser);
 
     const gotoHomePage = useCallback(() => {
         navigate("/");
@@ -28,6 +33,19 @@ const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
         setNavIsOpen(!navIsOpen);
     }, [navIsOpen]);
 
+    console.log(currentUser);
+
+    // LOGOUT:
+    const logoutHandler = useCallback(async () => {
+        try {
+            const res = await privateHttp.post("/user/logout");
+            console.log(res);
+            dispatch(curUserActions.logout());
+        } catch (error) {
+            console.log(error);
+        }
+    }, [dispatch, privateHttp]);
+
     function NavList() {
         return (
             <ul>
@@ -38,12 +56,35 @@ const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
                     Menu
                 </li>
                 {screenWidth && <TimeOpen />}
-                {screenWidth && currentUserInfo ? (
-                    ""
+                {!screenWidth && currentUserInfo?._id ? (
+                    <>
+                        <li
+                            onClick={gotoYourCart}
+                            className={styles["nav-item"]}
+                        >
+                            Your Cart
+                        </li>
+                        <li
+                            className={styles["nav-item"]}
+                            onClick={logoutHandler}
+                        >
+                            Log out
+                        </li>
+                    </>
                 ) : (
-                    <li onClick={gotoYourCart} className={styles["nav-item"]}>
-                        Your Cart
-                    </li>
+                    ""
+                )}
+                {!screenWidth && !currentUserInfo?._id ? (
+                    <>
+                        <Link to={"/login"} className={styles["nav-item"]}>
+                            Log in
+                        </Link>
+                        <Link to={"/sign-up"} className={styles["nav-item"]}>
+                            Sign up
+                        </Link>
+                    </>
+                ) : (
+                    ""
                 )}
             </ul>
         );

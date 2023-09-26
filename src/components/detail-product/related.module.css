@@ -19,9 +19,25 @@
     gap: 3rem;
 }
 
+.related-item {
+    max-width: 33.3333%;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    transition: all 300ms ease;
+}
+
+.related-item:hover {
+    cursor: pointer;
+    background-color: #0b0b11;
+}
+
 .related-item img {
     width: 100%;
     object-fit: cover;
+}
+
+.desc {
+    padding: 1.2rem;
 }
 
 .name {

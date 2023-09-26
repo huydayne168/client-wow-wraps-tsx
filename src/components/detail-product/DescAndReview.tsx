@@ -5,7 +5,7 @@ import Description from "./Description";
 import ReviewComp from "./ReviewComp";
 import AddReview from "./AddReview";
 
-const DescAndReview: React.FC<{ food: Food }> = ({ food }) => {
+const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
     const compInitState = "DESCRIPTION";
     const compReducer = useCallback(
         (state: string, action: { type: string }) => {
@@ -49,16 +49,16 @@ const DescAndReview: React.FC<{ food: Food }> = ({ food }) => {
                             compStateDispatch({ type: "REVIEW" });
                         }}
                     >
-                        Review({food.reviews.length})
+                        Review({product.reviews.length})
                     </li>
                 </ul>
             </div>
             <div className={styles.body}>
                 {compState === "DESCRIPTION" ? (
-                    <Description content={food.longDescription} />
+                    <Description content={product.longDescription} />
                 ) : (
                     <>
-                        <ReviewComp reviews={food.reviews} />
+                        <ReviewComp reviews={product.reviews} />
                         <AddReview />
                     </>
                 )}

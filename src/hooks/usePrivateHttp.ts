@@ -42,7 +42,7 @@ const usePrivateHttp = () => {
             privateHttp.interceptors.request.eject(requestIntercept);
             privateHttp.interceptors.response.eject(responseIntercept);
         };
-    }, [currentUser, refresh]);
+    }, [currentUser, refresh, dispatch]);
     return privateHttp;
 };
 

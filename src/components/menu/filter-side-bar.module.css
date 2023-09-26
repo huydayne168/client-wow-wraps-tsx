@@ -43,6 +43,7 @@
     border-bottom: 1px solid transparent;
 }
 
+.sort-side li.active,
 .sort-side li:hover {
     color: var(--main-color);
     cursor: pointer;
