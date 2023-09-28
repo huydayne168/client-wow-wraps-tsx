@@ -8,9 +8,23 @@ function FilterSideBar() {
     const [sortHighPrice, setSortHighPrice] = useState(false);
 
     useEffect(() => {
-        search.set("sortRate", sortRate.toString());
-        search.set("sortLowPrice", sortLowPrice.toString());
-        search.set("sortHighPrice", sortHighPrice.toString());
+        if (sortRate) {
+            search.set("sortRate", sortRate.toString());
+            search.delete("sortLowPrice");
+            search.delete("sortHighPrice");
+        } else if (sortHighPrice) {
+            search.set("sortHighPrice", sortHighPrice.toString());
+            search.delete("sortLowPrice");
+            search.delete("sortRate");
+        } else if (sortLowPrice) {
+            search.set("sortLowPrice", sortLowPrice.toString());
+            search.delete("sortHighPrice");
+            search.delete("sortRate");
+        } else {
+            search.delete("sortLowPrice");
+            search.delete("sortHighPrice");
+            search.delete("sortRate");
+        }
 
         setSearch(search, {
             replace: true,

@@ -17,6 +17,7 @@ const CartTable: React.FC<{}> = ({}) => {
     const [cart, setCart] = useState<FoodInCart[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
+    console.log(cart);
 
     useEffect(() => {
         const getCart = async () => {
@@ -139,86 +140,93 @@ const CartTable: React.FC<{}> = ({}) => {
                     </div>
                 </li>
                 {isLoading && <MoonLoader color="#fb8f2c" />}
-                {cart && cart[0]
-                    ? cart.map((item) => {
-                          return (
-                              <li
-                                  key={item.product._id}
-                                  className={styles["table-row"]}
-                              >
-                                  <div
-                                      className={`${styles["col"]} ${styles["col-1"]}`}
-                                      onClick={() => {
-                                          gotoDetailPage(item.product);
-                                      }}
-                                  >
-                                      <span
-                                          onClick={() => {
-                                              gotoDetailPage(item.product);
-                                          }}
-                                      >
-                                          {item.product.name}
-                                      </span>
-                                  </div>
-                                  <div
-                                      className={`${styles["col"]} ${styles["col-2"]}`}
-                                  >
-                                      ${item.product.price}
-                                  </div>
-                                  <div
-                                      className={`${styles["col"]} ${styles["col-3"]}`}
-                                  >
-                                      <table
-                                          className={styles["change-amount"]}
-                                      >
-                                          <thead>
-                                              <tr>
-                                                  <td
-                                                      onClick={() => {
-                                                          minusAmount(item._id);
-                                                      }}
-                                                  >
-                                                      -
-                                                  </td>
-                                                  <td>
-                                                      <input
-                                                          type="number"
-                                                          name="amount"
-                                                          id="amount"
-                                                          value={item.quantity}
-                                                          disabled
-                                                      />
-                                                  </td>
-                                                  <td
-                                                      onClick={() => {
-                                                          plusAmount(item._id);
-                                                      }}
-                                                  >
-                                                      +
-                                                  </td>
-                                              </tr>
-                                          </thead>
-                                      </table>
-                                  </div>
-                                  <div
-                                      className={`${styles["col"]} ${styles["col-4"]}`}
-                                  >
-                                      $
-                                      {Number(item.product.price) *
-                                          item.quantity}
-                                  </div>
-                                  <div
-                                      className={`${styles["col"]} ${styles["col-5"]}`}
-                                      onClick={() => {
-                                          deleteCartHandler(item._id);
-                                      }}
-                                  >
-                                      <FontAwesomeIcon icon={faTrash} />
-                                  </div>
-                              </li>
-                          );
-                      })
-                    : ""}
+                {cart && cart[0] && !isLoading ? (
+                    cart.map((item) => {
+                        return (
+                            <li
+                                key={item.product._id}
+                                className={styles["table-row"]}
+                            >
+                                <div
+                                    className={`${styles["col"]} ${styles["col-1"]}`}
+                                    onClick={() => {
+                                        gotoDetailPage(item.product);
+                                    }}
+                                >
+                                    <span
+                                        onClick={() => {
+                                            gotoDetailPage(item.product);
+                                        }}
+                                    >
+                                        {item.product.name}
+                                    </span>
+                                </div>
+                                <div
+                                    className={`${styles["col"]} ${styles["col-2"]}`}
+                                >
+                                    ${item.product.price}
+                                </div>
+                                <div
+                                    className={`${styles["col"]} ${styles["col-3"]}`}
+                                >
+                                    <table className={styles["change-amount"]}>
+                                        <thead>
+                                            <tr>
+                                                <td
+                                                    onClick={() => {
+                                                        minusAmount(item._id);
+                                                    }}
+                                                >
+                                                    -
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        name="amount"
+                                                        id="amount"
+                                                        value={item.quantity}
+                                                        disabled
+                                                    />
+                                                </td>
+                                                <td
+                                                    onClick={() => {
+                                                        plusAmount(item._id);
+                                                    }}
+                                                >
+                                                    +
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div
+                                    className={`${styles["col"]} ${styles["col-4"]}`}
+                                >
+                                    $
+                                    {Number(item.product.price) * item.quantity}
+                                </div>
+                                <div
+                                    className={`${styles["col"]} ${styles["col-5"]}`}
+                                    onClick={() => {
+                                        deleteCartHandler(item._id);
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </div>
+                            </li>
+                        );
+                    })
+                ) : (
+                    <p
+                        style={{
+                            color: "#666",
+                            textAlign: "center",
+                            margin: "3.2rem 0",
+                        }}
+                    >
+                        You have not add anything to your cart yet!
+                    </p>
+                )}
             </ul>
 
             <form className={styles["actions-form"]}>

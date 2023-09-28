@@ -15,10 +15,10 @@ import { motion } from "framer-motion";
 const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
     const navigate = useNavigate();
     const [products, setProducts] = useState<Food[] | null>();
-    const [isLastPage, setIsLastPage] = useState<boolean>(false);
     const [search, setSearch] = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [isLastPage, setIsLastPage] = useState<boolean>(false);
 
     useEffect(() => {
         search.set("category", "All");
@@ -31,6 +31,7 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
         });
     }, [currentPage]);
 
+    // get products:
     useEffect(() => {
         const getProducts = setTimeout(async () => {
             setIsLoading(true);
@@ -38,11 +39,14 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                 const res = await http.get("/api/product/get-products", {
                     params: search || null,
                 });
+                console.log(res.data);
+
+                // is server announce that this is the last page:
                 if (res.data.isLastPage) {
                     setIsLastPage(true);
                     setProducts(res.data.products);
                 } else {
-                    setProducts(res.data);
+                    setProducts(res.data.products);
                     setIsLastPage(false);
                 }
                 setIsLoading(false);

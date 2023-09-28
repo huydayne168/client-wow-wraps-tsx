@@ -28,7 +28,7 @@ function MostPopularFood() {
                     },
                 });
 
-                setProducts(res.data.slice(0, 3)); // just get top 3 products
+                setProducts(res.data.products.slice(0, 3)); // just get top 3 products
             } catch (error) {
                 console.log(error);
             }

@@ -13,7 +13,6 @@ const RateStar: React.FC<{ ratePoint?: number; submitPoint?: Function }> = ({
             submitPoint(Number(point));
         }
     }
-    console.log(pointIndex);
 
     return (
         <div className={styles["rate-star"]}>

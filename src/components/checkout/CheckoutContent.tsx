@@ -13,7 +13,7 @@ const CheckoutContent: React.FC<{}> = () => {
         <div className={`${styles["checkout-content"]} content-container`}>
             <h2 className="content-heading">Billing details</h2>
             <div className={styles["main-content"]}>
-                <ShippingForm />
+                <ShippingForm cart={cart} />
                 <Order cart={cart} />
             </div>
         </div>

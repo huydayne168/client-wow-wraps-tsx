@@ -18,7 +18,7 @@ root.render(
                 className: "",
                 style: {
                     border: "1px solid #713200",
-                    padding: "16px",
+                    padding: "16px 32px",
                     color: "#fff",
                     fontFamily: "Plus Jakarta Sans",
                     backgroundColor: "#fb8f2c",
