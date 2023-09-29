@@ -4,7 +4,7 @@ import http from "../../utils/http";
 import { useSearchParams } from "react-router-dom";
 function FilterTopBar() {
     const [search, setSearch] = useSearchParams();
-    const [categories, setCategories] = useState<string[] | null>([]);
+    const [categories, setCategories] = useState<any[] | null>([]);
     const [active, setActive] = useState<string | null>(
         search.get("category") || "All"
     );
@@ -27,11 +27,8 @@ function FilterTopBar() {
     }, []);
 
     const sortCategory = useCallback(
-        (category: string) => {
-            search.set("category", category);
-            setSearch(search, {
-                replace: true,
-            });
+        (categoryId: string) => {
+            search.set("category", categoryId);
             search.set("page", "1");
             setSearch(search, {
                 replace: true,
@@ -59,9 +56,9 @@ function FilterTopBar() {
                         categories.map((category) => {
                             return (
                                 <li
-                                    key={category}
+                                    key={category._id}
                                     onClick={() => {
-                                        sortCategory(category);
+                                        sortCategory(category._id);
                                     }}
                                     className={
                                         active === category
@@ -69,7 +66,7 @@ function FilterTopBar() {
                                             : ""
                                     }
                                 >
-                                    {category}
+                                    {category.name}
                                 </li>
                             );
                         })}

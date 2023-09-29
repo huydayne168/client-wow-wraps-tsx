@@ -94,11 +94,11 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
                         <span>ID:</span> {product._id}
                     </div>
                     <div>
-                        <span>category:</span> {product.category}
+                        <span>category:</span> {product.category.name}
                     </div>
                     <div>
                         <span>tags:</span>
-                        {product.tags.map((tag) => `${tag},`)}
+                        {product.tags.map((tag) => tag.name).join(", ")}
                     </div>
                 </div>
             </div>

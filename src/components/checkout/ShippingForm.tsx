@@ -65,6 +65,9 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
                         quantity: item.quantity,
                     };
                 }),
+                total: cart.reduce<number>((init, item) => {
+                    return init + item.quantity * item.product.price;
+                }, 0),
                 paymentMethod: formData.paymentMethod,
                 status: "Waiting for paying",
             });
