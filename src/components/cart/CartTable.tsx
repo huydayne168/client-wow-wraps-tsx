@@ -19,6 +19,7 @@ const CartTable: React.FC<{}> = ({}) => {
     const [isUpdated, setIsUpdated] = useState(false);
     console.log(cart);
 
+    // get cart
     useEffect(() => {
         const getCart = async () => {
             setIsLoading(true);
@@ -63,7 +64,7 @@ const CartTable: React.FC<{}> = ({}) => {
     // UPDATE CART HERE:
     const updateCartHandler = useCallback(async () => {
         try {
-            const res = await privateHttp.post("/user/update-cart", {
+            const res = await privateHttp.patch("/user/update-cart", {
                 cart: cart.map((item) => {
                     return { ...item, product: item.product._id };
                 }),
@@ -71,7 +72,6 @@ const CartTable: React.FC<{}> = ({}) => {
             });
             setIsUpdated(false);
             toast.success("Update success!");
-            console.log(res);
         } catch (error) {
             console.log(error);
             toast.error("Can not update!");
@@ -82,9 +82,11 @@ const CartTable: React.FC<{}> = ({}) => {
     const deleteCartHandler = useCallback(
         async (cartId: string) => {
             try {
-                const res = await privateHttp.post("/user/delete-cart", {
-                    cartId,
-                    userId: currentUser._id,
+                const res = await privateHttp.delete("/user/delete-cart", {
+                    params: {
+                        cartId,
+                        userId: currentUser._id,
+                    },
                 });
                 setCart((pre) => {
                     return pre.filter((item) => item._id !== cartId);

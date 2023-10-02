@@ -354,16 +354,6 @@ const SignUpForm: React.FC<{}> = () => {
                     )}
                 </div>
 
-                <div className={styles["more"]}>
-                    <motion.p
-                        transition={{ duration: 0.1 }}
-                        initial={{ opacity: 0, scale: 0.4 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                    >
-                        You can <Link to={"/login"}>log in here</Link>
-                    </motion.p>
-                </div>
-
                 <button
                     className="button"
                     onClick={(e) => {
@@ -373,6 +363,15 @@ const SignUpForm: React.FC<{}> = () => {
                 >
                     Sign Up
                 </button>
+                <div className={styles["more"]}>
+                    <motion.p
+                        transition={{ duration: 0.1 }}
+                        initial={{ opacity: 0, scale: 0.4 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                    >
+                        You can <Link to={"/login"}>log in here</Link>
+                    </motion.p>
+                </div>
             </form>
         </motion.div>
     );

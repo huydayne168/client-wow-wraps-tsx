@@ -3,11 +3,13 @@ import styles from "./food-detail.module.css";
 import { Food } from "../../models/food";
 import RateStar from "../rate-star/RateStar";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/store-hooks";
 import usePrivateHttp from "../../hooks/usePrivateHttp";
 import toast from "react-hot-toast";
+import { cartActions } from "../../stores/store-toolkit";
 const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const [amount, setAmount] = useState(1);
     const currentUser = useAppSelector((state) => state.currentUser);
     const privateHttp = usePrivateHttp();
@@ -31,6 +33,7 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
             });
             console.log(res);
             toast.success("Added Success!");
+            dispatch(cartActions.addCartItem(product));
         } catch (error) {
             console.log(error);
         }

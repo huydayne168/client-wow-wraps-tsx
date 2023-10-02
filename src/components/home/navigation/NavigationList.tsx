@@ -53,7 +53,6 @@ const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
                 <li onClick={gotoMenuPage} className={styles["nav-item"]}>
                     Menu
                 </li>
-                {screenWidth && <TimeOpen />}
                 {!screenWidth && currentUserInfo?._id ? (
                     <>
                         <li

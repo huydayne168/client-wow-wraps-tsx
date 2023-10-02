@@ -10,6 +10,5 @@ export type FoodInCart = {
 
 export type Cart = {
     _id: string;
-    user: User;
-    foods: FoodInCart[];
+    products: FoodInCart[] | any;
 };

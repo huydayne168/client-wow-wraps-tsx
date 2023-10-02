@@ -1,4 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { Cart } from "../models/cart";
 // import type { PayloadAction } from "@reduxjs/toolkit";
 // import type { RootState } from '../../src/stores/stores-toolkit'
 // import { type } from "os";
@@ -56,12 +57,50 @@ const currentUser = createSlice({
 
 export const curUserActions = currentUser.actions;
 
+////// user cart store:
+// const id = localStorage.getItem("currentUserId");
+const cartInit: Cart = {
+    _id: "",
+    products: [],
+};
+
+const cart = createSlice({
+    name: "cart",
+    initialState: cartInit,
+    reducers: {
+        getCart(state, action) {
+            state = action.payload;
+        },
+
+        addCartItem(state, action) {
+            const newCart = {
+                ...state,
+                products: state.products.push(action.payload),
+            };
+            state = newCart;
+        },
+
+        deleteCartItem(state, action) {
+            const newCart = {
+                ...state,
+                products: state.products.filter(
+                    (item: any) => item._id !== action.payload._id
+                ),
+            };
+            state = newCart;
+        },
+    },
+});
+
+export const cartActions = cart.actions;
+
 ///////////////////////////////////////////////
 // store all slices:
 const store = configureStore({
     reducer: {
         screenWidth: screenWidth.reducer,
         currentUser: currentUser.reducer,
+        cart: cart.reducer,
     },
 });
 export type RootState = ReturnType<typeof store.getState>;

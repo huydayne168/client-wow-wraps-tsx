@@ -12,6 +12,7 @@
 
 .right-side {
     display: flex;
+    align-items: center;
     gap: 3.4rem;
 }
 
@@ -26,6 +27,7 @@
 }
 
 .cart-nav {
+    position: relative;
     display: flex;
     gap: 0.8rem;
 }
@@ -34,11 +36,45 @@
     color: var(--main-color);
     cursor: pointer;
 }
+.user-profile {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.dropdown-items {
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+    width: 12rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    transition: all 400ms ease;
+}
+
+.dropdown-items:hover {
+    color: #fff;
+    background-color: var(--main-color);
+}
+
+.cart-count {
+    position: absolute;
+    right: -1.5rem;
+    top: -1.5rem;
+    width: 2rem;
+    height: 2rem;
+    color: #fff;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media screen and (max-width: 576px) {
     .navigation-bar {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 0.6rem;
         align-items: start;
+        justify-content: center;
     }
 }

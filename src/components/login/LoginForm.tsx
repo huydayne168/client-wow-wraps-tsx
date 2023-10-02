@@ -120,14 +120,6 @@ const LoginForm: React.FC<{}> = () => {
                     />
                 </div>
 
-                <div className={styles["more"]}>
-                    <p>
-                        You can <Link to={"/sign-up"}>sign up here</Link>
-                    </p>
-
-                    <Link to="/forgot-password">Forgot Password?</Link>
-                </div>
-
                 <button
                     className="button"
                     onClick={(e) => {
@@ -137,6 +129,13 @@ const LoginForm: React.FC<{}> = () => {
                 >
                     Log In
                 </button>
+                <div className={styles["more"]}>
+                    <p>
+                        You can <Link to={"/sign-up"}>sign up here</Link>
+                    </p>
+
+                    <Link to="/forgot-password">Forgot Password?</Link>
+                </div>
             </form>
         </motion.div>
     );
