@@ -13,5 +13,7 @@ export type Food = {
     category: Category;
     tags: Tag[];
     reviews: Review[];
+    flashSale: [];
+    salePrice: number | null;
     image: string;
 };

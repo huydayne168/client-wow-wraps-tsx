@@ -41,6 +41,12 @@
     text-align: start;
 }
 
+.food-old-price {
+    margin-right: 2.4rem;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
 .food-text {
     margin-top: 2rem;
 }

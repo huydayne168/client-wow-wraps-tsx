@@ -11,5 +11,5 @@ export type User = {
     cart: Cart[];
     checkout: Checkout[];
     refreshToken?: string;
-    roles?: {};
+    roleId: any;
 };

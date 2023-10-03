@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import usePrivateHttp from "../../hooks/usePrivateHttp";
-import { useAppSelector } from "../../hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/store-hooks";
 import { Food } from "../../models/food";
 import { MoonLoader } from "react-spinners";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
+import { cartActions } from "../../stores/store-toolkit";
 const CartTable: React.FC<{}> = ({}) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const privateHttp = usePrivateHttp();
     const currentUser = useAppSelector((state) => state.currentUser);
     const [cart, setCart] = useState<FoodInCart[]>([]);
@@ -34,6 +36,7 @@ const CartTable: React.FC<{}> = ({}) => {
         };
         getCart();
     }, []);
+    console.log(currentUser);
 
     const plusAmount = useCallback((_id: string) => {
         setIsUpdated(true);
@@ -91,7 +94,9 @@ const CartTable: React.FC<{}> = ({}) => {
                 setCart((pre) => {
                     return pre.filter((item) => item._id !== cartId);
                 });
+
                 toast.success("Deleted!");
+                dispatch(cartActions.deleteCartItem(cartId));
                 console.log(res);
             } catch (error) {
                 console.log(error);
@@ -166,7 +171,15 @@ const CartTable: React.FC<{}> = ({}) => {
                                 <div
                                     className={`${styles["col"]} ${styles["col-2"]}`}
                                 >
-                                    ${item.product.price}
+                                    {item.product.salePrice ? (
+                                        <span
+                                            className={styles["food-old-price"]}
+                                        >
+                                            ${item.product.salePrice}
+                                        </span>
+                                    ) : (
+                                        <span>${item.product.price}</span>
+                                    )}
                                 </div>
                                 <div
                                     className={`${styles["col"]} ${styles["col-3"]}`}
@@ -205,7 +218,11 @@ const CartTable: React.FC<{}> = ({}) => {
                                     className={`${styles["col"]} ${styles["col-4"]}`}
                                 >
                                     $
-                                    {Number(item.product.price) * item.quantity}
+                                    {item.product.salePrice
+                                        ? Number(item.product.salePrice) *
+                                          item.quantity
+                                        : Number(item.product.price) *
+                                          item.quantity}
                                 </div>
                                 <div
                                     className={`${styles["col"]} ${styles["col-5"]}`}
@@ -233,16 +250,8 @@ const CartTable: React.FC<{}> = ({}) => {
 
             <form className={styles["actions-form"]}>
                 <div className={styles["coupon"]}>
-                    <input
-                        type="text"
-                        name="coupon"
-                        id="coupon"
-                        placeholder="Enter a coupon"
-                    />
-                    <button className={`button`}>Apply Coupon</button>
                     {isUpdated && (
                         <motion.button
-                            // viewport={{ once: true }}
                             transition={{ duration: 0.2 }}
                             initial={{ opacity: 0, scale: 0.4 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -256,27 +265,31 @@ const CartTable: React.FC<{}> = ({}) => {
                         </motion.button>
                     )}
                 </div>
-                <div
-                    // onClick={gotoCheckout}
-                    className={`${styles["goto-checkout"]} button`}
-                    onClick={gotoCheckoutPage}
-                >
-                    Proceed to Checkout
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="56"
-                        height="26"
-                        viewBox="0 0 56 26"
-                        fill="none"
+                {cart.length > 0 && (
+                    <motion.div
+                        transition={{ duration: 0.2 }}
+                        initial={{ opacity: 0, scale: 0.4 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className={`${styles["goto-checkout"]} button`}
+                        onClick={gotoCheckoutPage}
                     >
-                        <path
-                            d="M1 13H55M55 13C50.9091 12.36 42.7273 9.064 42.7273 1M55 13C50.9091 13.64 42.7273 16.936 42.7273 25"
-                            stroke="white"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </div>
+                        Proceed to Checkout
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="56"
+                            height="26"
+                            viewBox="0 0 56 26"
+                            fill="none"
+                        >
+                            <path
+                                d="M1 13H55M55 13C50.9091 12.36 42.7273 9.064 42.7273 1M55 13C50.9091 13.64 42.7273 16.936 42.7273 25"
+                                stroke="white"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </motion.div>
+                )}
             </form>
         </div>
     );

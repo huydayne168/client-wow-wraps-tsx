@@ -40,26 +40,38 @@ const NavigationBar: React.FC<{}> = () => {
                         _id: currentUser._id,
                     },
                 });
-                setCurrentUserInfo(res.data);
+                setCurrentUserInfo(res.data.foundUser);
             } catch (error) {
                 console.log(error);
             }
         };
-        getCurrentUserInfo();
-    }, []);
+        if (currentUser._id) {
+            getCurrentUserInfo();
+        }
+    }, [currentUser._id]);
 
     // get current user cart:
     useEffect(() => {
-        const getCart = async () => {
-            const res = await privateHttp.get("/user/get-cart", {
-                params: {
-                    userId: currentUser._id,
-                },
-            });
-            dispatch(cartActions.getCart(res.data));
-        };
-        getCart();
-    }, []);
+        try {
+            const getCart = async () => {
+                const res = await privateHttp.get("/user/get-cart", {
+                    params: {
+                        userId: currentUser._id,
+                    },
+                });
+                console.log(res.data);
+
+                dispatch(cartActions.getCart(res.data));
+            };
+            if (currentUser._id) {
+                console.log("oke");
+                getCart();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, [currentUserInfo?._id, currentUser._id]);
+    console.log(cart);
 
     // LOGOUT
     const logoutHandler = useCallback(async () => {
@@ -68,6 +80,7 @@ const NavigationBar: React.FC<{}> = () => {
             console.log(res);
             setCurrentUserInfo(null);
             dispatch(curUserActions.logout());
+            navigate("/");
         } catch (error) {
             console.log(error);
         }
@@ -76,7 +89,16 @@ const NavigationBar: React.FC<{}> = () => {
     const items: MenuProps["items"] = [
         {
             key: "yourProfile",
-            label: <div className={styles["dropdown-items"]}>Your Profile</div>,
+            label: (
+                <div
+                    className={styles["dropdown-items"]}
+                    onClick={() => {
+                        navigate("/profile");
+                    }}
+                >
+                    Your Profile
+                </div>
+            ),
         },
         {
             key: "logOut",
@@ -135,12 +157,6 @@ const NavigationBar: React.FC<{}> = () => {
                                     {currentUserInfo.userName}
                                 </span>
                             </Dropdown>
-                            {/* <div
-                                className={styles["logout"]}
-                                onClick={logoutHandler}
-                            >
-                                Log out
-                            </div> */}
                         </div>
                     ) : (
                         <div className={styles["right-side"]}>

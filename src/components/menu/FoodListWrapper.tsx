@@ -112,7 +112,29 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                                                         styles["desc-price"]
                                                     }
                                                 >
-                                                    ${product.price}
+                                                    {product.salePrice ? (
+                                                        <>
+                                                            <span
+                                                                className={
+                                                                    styles[
+                                                                        "food-old-price"
+                                                                    ]
+                                                                }
+                                                            >
+                                                                ${product.price}
+                                                            </span>
+                                                            <span>
+                                                                $
+                                                                {
+                                                                    product.salePrice
+                                                                }
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        <span>
+                                                            ${product.price}
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
                                             <div

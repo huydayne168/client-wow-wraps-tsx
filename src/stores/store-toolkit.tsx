@@ -69,15 +69,34 @@ const cart = createSlice({
     initialState: cartInit,
     reducers: {
         getCart(state, action) {
-            state = action.payload;
+            const newCart = {
+                ...state,
+                products: action.payload,
+            };
+            return (state = newCart);
         },
 
         addCartItem(state, action) {
-            const newCart = {
-                ...state,
-                products: state.products.push(action.payload),
-            };
-            state = newCart;
+            const isExist = state.products.some(
+                (item: any) => item.product._id === action.payload.product._id
+            );
+            if (isExist) {
+                const newCart = {
+                    ...state,
+                    products: state.products.filter((item: any) => {
+                        if (item.product._id === action.payload.product._id) {
+                            item.quantity += action.payload.amount;
+                        }
+                    }),
+                };
+                state = newCart;
+            } else {
+                const newCart = {
+                    ...state,
+                    products: state.products.push(action.payload),
+                };
+                state = newCart;
+            }
         },
 
         deleteCartItem(state, action) {
@@ -88,6 +107,10 @@ const cart = createSlice({
                 ),
             };
             state = newCart;
+        },
+
+        clearAllCart(state) {
+            return (state = cartInit);
         },
     },
 });

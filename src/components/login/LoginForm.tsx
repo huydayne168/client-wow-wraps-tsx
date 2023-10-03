@@ -55,11 +55,13 @@ const LoginForm: React.FC<{}> = () => {
                     accessToken: accessToken,
                 })
             );
+            localStorage.removeItem("email");
             navigate("/");
         } catch (error) {
             console.log(error);
             if (error instanceof AxiosError) {
-                if (error.status === 401) {
+                if (error.response?.status === 401) {
+                    console.log("alo");
                     setErrMess("Email or password is not correct!");
                 }
             }

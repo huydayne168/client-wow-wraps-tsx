@@ -68,7 +68,24 @@ function MostPopularFood() {
                                             {product.name}
                                         </h4>
                                         <div className={styles["food-price"]}>
-                                            ${product.price}
+                                            {product.salePrice ? (
+                                                <>
+                                                    <span
+                                                        className={
+                                                            styles[
+                                                                "food-old-price"
+                                                            ]
+                                                        }
+                                                    >
+                                                        ${product.price}
+                                                    </span>
+                                                    <span>
+                                                        ${product.salePrice}
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span>${product.price}</span>
+                                            )}
                                         </div>
                                     </div>
 
@@ -82,7 +99,7 @@ function MostPopularFood() {
                                         <div className={styles.button}>
                                             Order Now
                                         </div>
-                                        <RateStar ratePoint={3} />
+                                        <RateStar ratePoint={product.rate} />
                                     </div>
                                 </div>
                             </li>

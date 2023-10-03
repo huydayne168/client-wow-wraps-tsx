@@ -5,6 +5,7 @@ import http from "../../utils/http";
 import { useTime } from "../../hooks/useTime";
 import { useAppSelector } from "../../hooks/store-hooks";
 import usePrivateHttp from "../../hooks/usePrivateHttp";
+import { Alert } from "antd";
 const AddReview: React.FC<{ productId: string; addReview: Function }> = ({
     productId,
     addReview,
@@ -63,8 +64,13 @@ const AddReview: React.FC<{ productId: string; addReview: Function }> = ({
                     placeholder="Tell everybody what you think about this food!"
                     ref={commentRef}
                 ></textarea>
+
                 {errMess && (
-                    <p style={{ color: "red" }}>Please give all fields!</p>
+                    <Alert
+                        message="Please enter all input!"
+                        type="error"
+                        style={{ color: "red" }}
+                    />
                 )}
                 <button
                     onClick={(e) => {

@@ -12,14 +12,16 @@ const DetailProductPage: React.FC<{}> = () => {
     const location = useLocation();
     const product: Food = location.state.product;
     const [relatedProducts, setRelatedProducts] = useState<Food[]>([]);
+    console.log(product.category);
 
+    // get related products:
     useEffect(() => {
         const getRelatedProducts = async () => {
             try {
                 const res = await http.get("/api/product/related-products", {
                     params: {
                         productId: product._id,
-                        category: product.category,
+                        category: product.category._id,
                     },
                 });
 

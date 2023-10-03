@@ -56,6 +56,18 @@
     text-transform: capitalize;
 }
 
+.food-price {
+    position: relative;
+}
+
+.food-old-price {
+    position: absolute;
+    top: -80%;
+    right: 0;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
 .food-desc {
     padding: 1.2rem 1.2rem 2.4rem;
     box-sizing: content-box;

@@ -33,7 +33,7 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
             });
             console.log(res);
             toast.success("Added Success!");
-            dispatch(cartActions.addCartItem(product));
+            dispatch(cartActions.addCartItem({ product, amount }));
         } catch (error) {
             console.log(error);
         }
@@ -55,7 +55,16 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
                     </p>
                 </div>
                 <div className={`content-heading ${styles["food-price"]}`}>
-                    ${product.price}
+                    {product.salePrice ? (
+                        <>
+                            <span className={styles["food-old-price"]}>
+                                ${product.price}
+                            </span>
+                            <span>${product.salePrice}</span>
+                        </>
+                    ) : (
+                        <span>${product.price}</span>
+                    )}
                 </div>
                 <div className={styles["food-text"]}>
                     {product.shortDescription}

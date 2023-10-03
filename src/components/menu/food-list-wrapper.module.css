@@ -69,6 +69,12 @@
     text-transform: capitalize;
 }
 
+.food-old-price {
+    margin-right: 1.2rem;
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
 .no-result,
 .desc-text {
     margin-top: 0.2rem;

@@ -1,13 +1,22 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./shipping-form.module.css";
 import http from "../../utils/http";
-import { useAppSelector } from "../../hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/store-hooks";
 import { User } from "../../models/user";
 import usePrivateHttp from "../../hooks/usePrivateHttp";
 import { useTime } from "../../hooks/useTime";
 import { FoodInCart } from "../../models/cart";
 import { toast } from "react-hot-toast";
-const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
+import { useNavigate } from "react-router-dom";
+import { cartActions } from "../../stores/store-toolkit";
+import { Alert } from "antd";
+import { Voucher } from "../../models/voucher";
+const ShippingForm: React.FC<{
+    cart: FoodInCart[];
+    voucher: Voucher | undefined;
+}> = ({ cart, voucher }) => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const privateHttp = usePrivateHttp();
     const time = useTime();
     const userId = useAppSelector((state) => state.currentUser)._id;
@@ -18,6 +27,7 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
         phoneNumber: currentUser?.phoneNumber || "",
         paymentMethod: "",
     });
+    const [formError, setFormError] = useState(false);
 
     console.log(formData.paymentMethod);
 
@@ -42,7 +52,7 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
                     },
                 });
 
-                setCurrentUser(res.data);
+                setCurrentUser(res.data.foundUser);
             } catch (error) {
                 console.log(error);
             }
@@ -52,6 +62,12 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
 
     // add check out handler
     const addCheckoutHandler = useCallback(async () => {
+        if (Object.values(formData).some((value) => value === "")) {
+            setFormError(true);
+            return;
+        } else {
+            setFormError(false);
+        }
         try {
             const res = await privateHttp.post("/api/checkout/add-checkout", {
                 date: time.date,
@@ -66,14 +82,19 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
                     };
                 }),
                 total: cart.reduce<number>((init, item) => {
-                    return init + item.quantity * item.product.price;
+                    return item.product.salePrice && item.product.salePrice > 0
+                        ? init + item.quantity * item.product.salePrice
+                        : init + item.quantity * item.product.price;
                 }, 0),
                 paymentMethod: formData.paymentMethod,
                 status: "Waiting for paying",
+                voucher,
             });
             toast.success("Success! Thank you for your order🥳", {
                 position: "top-center",
             });
+            dispatch(cartActions.clearAllCart());
+            navigate("/profile");
             console.log(res);
         } catch (error) {
             console.log(error);
@@ -93,6 +114,13 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
 
     return (
         <form action="#" className={`${styles["shipping-form"]} `}>
+            {formError && (
+                <Alert
+                    message="Please fill all input"
+                    type="error"
+                    style={{ color: "red" }}
+                />
+            )}
             <div className={styles["control"]}>
                 <label htmlFor="name">Receiver Name*</label>
                 <input
@@ -187,6 +215,13 @@ const ShippingForm: React.FC<{ cart: FoodInCart[] }> = ({ cart }) => {
                     onClick={(e) => {
                         e.preventDefault();
                         addCheckoutHandler();
+                    }}
+                    disabled={cart.length === 0 ? true : false}
+                    style={{
+                        opacity: `${cart.length === 0 ? ".6" : "1"}`,
+                        cursor: `${
+                            cart.length === 0 ? "not-allowed" : "pointer"
+                        }`,
                     }}
                 >
                     Place order

@@ -11,6 +11,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 
 function App() {
     // const screenWidth = useSelector((state: any) => state.screenWidth);
@@ -61,6 +62,10 @@ function App() {
                 {
                     element: <CheckoutPage />,
                     path: "/checkout-page",
+                },
+                {
+                    element: <Profile />,
+                    path: "/profile",
                 },
             ],
         },

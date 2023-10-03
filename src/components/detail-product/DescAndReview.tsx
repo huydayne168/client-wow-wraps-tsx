@@ -28,6 +28,7 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
     );
 
     const [reviews, setReviews] = useState<Review[]>([]);
+
     function addAReview(review: Review) {
         setReviews((pre) => [review, ...pre]);
     }

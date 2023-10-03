@@ -6,9 +6,11 @@ import avatar from "../../asset/asset/c6e56503cfdd87da299f72dc416023d4.jpg";
 import { useAppSelector } from "../../hooks/store-hooks";
 const ReviewComp: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
     const currentUser = useAppSelector((state) => state.currentUser);
+    console.log(currentUser, reviews[0]);
+
     return (
         <div className={styles["review"]}>
-            {reviews.map((review) => {
+            {reviews.map((review, index) => {
                 return (
                     <div key={review._id} className={styles["review-item"]}>
                         <div className={styles["avatar"]}>
@@ -17,7 +19,8 @@ const ReviewComp: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
                         <div className={styles["desc"]}>
                             <div className={styles.top}>
                                 <div className={styles.username}>
-                                    {review.user._id === currentUser._id
+                                    {review.user._id === currentUser._id ||
+                                    index === 0
                                         ? "You"
                                         : review.user.userName}
                                 </div>
