@@ -6,30 +6,40 @@ function FilterSideBar() {
     const [sortRate, setSortRate] = useState(false);
     const [sortLowPrice, setSortLowPrice] = useState(false);
     const [sortHighPrice, setSortHighPrice] = useState(false);
+    const [sortFlashSale, setSortFlashSale] = useState(false);
 
     useEffect(() => {
         if (sortRate) {
             search.set("sortRate", sortRate.toString());
             search.delete("sortLowPrice");
             search.delete("sortHighPrice");
+            // search.delete("sortFlashSale");
         } else if (sortHighPrice) {
             search.set("sortHighPrice", sortHighPrice.toString());
             search.delete("sortLowPrice");
             search.delete("sortRate");
+            // search.delete("sortFlashSale");
         } else if (sortLowPrice) {
             search.set("sortLowPrice", sortLowPrice.toString());
             search.delete("sortHighPrice");
             search.delete("sortRate");
+            // search.delete("sortFlashSale");
+        } else if (sortFlashSale) {
+            search.set("sortFlashSale", sortFlashSale.toString());
+            // search.delete("sortHighPrice");
+            // search.delete("sortRate");
+            // search.delete("sortLowPrice");
         } else {
             search.delete("sortLowPrice");
             search.delete("sortHighPrice");
             search.delete("sortRate");
+            search.delete("sortFlashSale");
         }
 
         setSearch(search, {
             replace: true,
         });
-    }, [sortRate, sortHighPrice, sortLowPrice]);
+    }, [sortRate, sortHighPrice, sortLowPrice, sortFlashSale]);
 
     const searchHandler = useCallback(
         (text: string) => {
@@ -87,12 +97,12 @@ function FilterSideBar() {
                 </div>
 
                 <ul className={styles["sort-side"]}>
-                    {/* user can choose more than one at the same sorting action */}
                     <li
                         onClick={() => {
                             setSortRate((prev) => !prev);
                             setSortHighPrice(false);
                             setSortLowPrice(false);
+                            // setSortFlashSale(false);
                         }}
                         className={sortRate ? styles["active"] : ""}
                     >
@@ -103,6 +113,7 @@ function FilterSideBar() {
                             setSortLowPrice((prev) => !prev);
                             setSortHighPrice(false);
                             setSortRate(false);
+                            // setSortFlashSale(false);
                         }}
                         className={sortLowPrice ? styles["active"] : ""}
                     >
@@ -111,12 +122,22 @@ function FilterSideBar() {
                     <li
                         onClick={() => {
                             setSortHighPrice((prev) => !prev);
+                            // setSortFlashSale(false);
                             setSortLowPrice(false);
                             setSortRate(false);
                         }}
                         className={sortHighPrice ? styles["active"] : ""}
                     >
                         High Price
+                    </li>
+
+                    <li
+                        onClick={() => {
+                            setSortFlashSale((pre) => !pre);
+                        }}
+                        className={sortFlashSale ? styles["active"] : ""}
+                    >
+                        Flash Sale
                     </li>
                 </ul>
             </form>

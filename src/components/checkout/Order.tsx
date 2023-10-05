@@ -6,10 +6,12 @@ import { AxiosError } from "axios";
 import http from "../../utils/http";
 import { Voucher } from "../../models/voucher";
 import toast from "react-hot-toast";
+import usePrivateHttp from "../../hooks/usePrivateHttp";
 const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
     cart,
     getVoucher,
 }) => {
+    const privateHttp = usePrivateHttp();
     const [errVoucher, setErrVoucher] = useState(false);
     const [code, setCode] = useState("");
     const [voucher, setVoucher] = useState<Voucher>();
@@ -28,22 +30,23 @@ const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
         console.log(code);
 
         try {
-            const res = await http.get("/api/voucher/get-vouchers", {
+            const res = await privateHttp.get("/api/voucher/apply-voucher", {
                 params: {
-                    codeQuery: code,
-                    sortActive: true,
+                    code: code,
                 },
             });
-            console.log(res.data.vouchers);
+            console.log(res.data);
 
-            setVoucher(res.data.vouchers[0]);
-            getVoucher(res.data.vouchers[0]);
-            if (res.data.vouchers[0]) {
+            setVoucher(res.data[0]);
+            getVoucher(res.data[0]);
+            if (res.data[0]) {
                 toast.success("Applied voucher!");
             } else {
                 setErrVoucher(true);
             }
         } catch (error) {
+            console.log(error);
+
             if (error instanceof AxiosError) {
                 if (error.response?.status === 409) {
                     setErrVoucher(true);

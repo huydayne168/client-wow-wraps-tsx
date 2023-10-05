@@ -18,7 +18,10 @@ const Related: React.FC<{ products: Food[] }> = ({ products }) => {
     );
     return (
         <div className={`content-container ${styles["related"]}`}>
-            <h3 className={`${styles["heading"]}`}>Related Items</h3>
+            <h3 className={`${styles["heading"]}`}>
+                {" "}
+                {products && products[0] ? "Related Items" : "No related Items"}
+            </h3>
             <div className={styles["related-list"]}>
                 {products && products[0]
                     ? products.map((product) => {

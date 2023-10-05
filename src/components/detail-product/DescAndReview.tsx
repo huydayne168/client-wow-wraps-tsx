@@ -8,6 +8,7 @@ import http from "../../utils/http";
 import { Review } from "../../models/review";
 
 const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
+    const [isAddingReview, setIsAddingReview] = useState(true);
     const compInitState = "DESCRIPTION";
     const compReducer = useCallback(
         (state: string, action: { type: string }) => {
@@ -31,6 +32,7 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
 
     function addAReview(review: Review) {
         setReviews((pre) => [review, ...pre]);
+        setIsAddingReview((pre) => !pre);
     }
 
     useEffect(() => {
@@ -49,7 +51,7 @@ const DescAndReview: React.FC<{ product: Food }> = ({ product }) => {
             }
         };
         getReviews();
-    }, [product._id]);
+    }, [product._id, isAddingReview]);
 
     return (
         <div className={`${styles["desc-and-review"]} content-container`}>

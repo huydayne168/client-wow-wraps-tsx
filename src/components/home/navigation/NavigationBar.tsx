@@ -45,8 +45,13 @@ const NavigationBar: React.FC<{}> = () => {
             } catch (error) {
                 console.log(error);
                 if (error instanceof AxiosError) {
-                    if (error.response?.status === 401) {
+                    if (
+                        error.response?.status === 401 ||
+                        error.response?.status === 403
+                    ) {
                         navigate("/login");
+                    } else if (error.request) {
+                        console.log(error.request);
                     }
                 }
             }
