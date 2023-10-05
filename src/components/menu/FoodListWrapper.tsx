@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BarLoader from "react-spinners/BarLoader";
 import { motion } from "framer-motion";
+import SaleDesc from "../saleDesc/SaleDesc";
 
 const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
     const navigate = useNavigate();
@@ -91,6 +92,14 @@ const FoodListWrapper: React.FC<{ food?: Food }> = ({ food }) => {
                                             gotoDetailPage(product);
                                         }}
                                     >
+                                        {product.flashSale.length ? (
+                                            <SaleDesc
+                                                sale={
+                                                    product.flashSale[0]
+                                                        .discountPercent
+                                                }
+                                            />
+                                        ) : null}
                                         <div className={styles["food-image"]}>
                                             <img src={product.image} alt="" />
                                         </div>

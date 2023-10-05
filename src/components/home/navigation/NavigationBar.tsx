@@ -17,6 +17,7 @@ import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
+import { AxiosError } from "axios";
 const NavigationBar: React.FC<{}> = () => {
     const privateHttp = usePrivateHttp();
     const dispatch = useAppDispatch();
@@ -43,6 +44,11 @@ const NavigationBar: React.FC<{}> = () => {
                 setCurrentUserInfo(res.data.foundUser);
             } catch (error) {
                 console.log(error);
+                if (error instanceof AxiosError) {
+                    if (error.response?.status === 401) {
+                        navigate("/login");
+                    }
+                }
             }
         };
         if (currentUser._id) {

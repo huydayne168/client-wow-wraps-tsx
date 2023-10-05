@@ -26,6 +26,8 @@ function FilterTopBar() {
         getCategories();
     }, []);
 
+    console.log(categories);
+
     const sortCategory = useCallback(
         (categoryId: string) => {
             search.set("category", categoryId);
@@ -61,7 +63,7 @@ function FilterTopBar() {
                                         sortCategory(category._id);
                                     }}
                                     className={
-                                        active === category
+                                        active === category._id
                                             ? styles["active"]
                                             : ""
                                     }

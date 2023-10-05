@@ -1,4 +1,5 @@
 .food-detail {
+    position: relative;
     margin-top: 10.1rem;
     display: flex;
     gap: 3rem;
@@ -7,6 +8,12 @@
     font-family: Plus Jakarta Sans;
     font-style: normal;
     line-height: 1.625; /* 162.5% */
+}
+
+.sale-desc {
+    position: absolute;
+    top: -4%;
+    left: 0;
 }
 
 .food-img {

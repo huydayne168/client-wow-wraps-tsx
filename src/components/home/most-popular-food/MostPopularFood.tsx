@@ -5,6 +5,7 @@ import RateStar from "../../rate-star/RateStar";
 import http from "../../../utils/http";
 import { Food } from "../../../models/food";
 import { useNavigate } from "react-router-dom";
+import SaleDesc from "../../saleDesc/SaleDesc";
 function MostPopularFood() {
     const navigate = useNavigate();
     const [products, setProducts] = useState<Food[]>([]);
@@ -35,6 +36,8 @@ function MostPopularFood() {
         };
         getProducts();
     }, []);
+    console.log(products);
+
     return (
         <div className={`${styles["most-popular"]} content-container`}>
             <h3 className={`${styles["heading"]} content-heading`}>
@@ -58,6 +61,13 @@ function MostPopularFood() {
                                     gotoDetailPage(product);
                                 }}
                             >
+                                {product.flashSale.length ? (
+                                    <SaleDesc
+                                        sale={
+                                            product.flashSale[0].discountPercent
+                                        }
+                                    />
+                                ) : null}
                                 <div className={styles["food-image"]}>
                                     <img src={product.image} alt="" />
                                 </div>

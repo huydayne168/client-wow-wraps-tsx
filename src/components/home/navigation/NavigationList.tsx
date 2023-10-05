@@ -96,7 +96,9 @@ const NavigationList: React.FC<{ currentUserInfo: User | null }> = ({
                     <NavBarIcon />
                     {currentUserInfo ? (
                         <div
-                            onClick={gotoYourCart}
+                            onClick={() => {
+                                navigate("profile");
+                            }}
                             className={styles["profile"]}
                         >
                             {currentUserInfo?.userName}

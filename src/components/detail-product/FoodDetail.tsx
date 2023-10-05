@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/store-hooks";
 import usePrivateHttp from "../../hooks/usePrivateHttp";
 import toast from "react-hot-toast";
 import { cartActions } from "../../stores/store-toolkit";
+import SaleDesc from "../saleDesc/SaleDesc";
 const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -54,6 +55,11 @@ const FoodDetail: React.FC<{ product: Food }> = ({ product }) => {
                         ({product.reviews.length} customers review)
                     </p>
                 </div>
+                {product.flashSale.length ? (
+                    <span className={styles["sale-desc"]}>
+                        <SaleDesc sale={product.flashSale[0].discountPercent} />
+                    </span>
+                ) : null}
                 <div className={`content-heading ${styles["food-price"]}`}>
                     {product.salePrice ? (
                         <>

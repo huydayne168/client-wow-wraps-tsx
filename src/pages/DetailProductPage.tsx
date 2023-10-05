@@ -33,6 +33,7 @@ const DetailProductPage: React.FC<{}> = () => {
 
         getRelatedProducts();
     }, [product]);
+    console.log(relatedProducts);
 
     return (
         <div className="checkout-page">

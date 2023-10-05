@@ -3,7 +3,12 @@ import styles from "./checkouts.module.css";
 import { Checkout } from "../../models/checkout";
 import { useAppSelector } from "../../hooks/store-hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCheckCircle,
+    faCircleXmark,
+    faCross,
+    faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 const Checkouts: React.FC<{ checkouts: Checkout[] }> = ({ checkouts }) => {
     const [isLoading, setIsLoading] = useState(false);
     return (
@@ -74,6 +79,20 @@ const Checkouts: React.FC<{ checkouts: Checkout[] }> = ({ checkouts }) => {
                                         "paid" ? (
                                             <FontAwesomeIcon
                                                 icon={faCheckCircle}
+                                            />
+                                        ) : null}
+                                        {checkout.status.toLowerCase() ===
+                                        "canceled" ? (
+                                            <FontAwesomeIcon
+                                                style={{ color: "red" }}
+                                                icon={faCircleXmark}
+                                            />
+                                        ) : null}
+                                        {checkout.status.toLowerCase() ===
+                                        "waiting for paying" ? (
+                                            <FontAwesomeIcon
+                                                style={{ color: "blue" }}
+                                                icon={faSpinner}
                                             />
                                         ) : null}
                                     </span>

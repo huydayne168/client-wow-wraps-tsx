@@ -1,0 +1,16 @@
+.sale-desc {
+    position: absolute;
+    top: -2%;
+    left: -3%;
+    z-index: 999;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: red;
+    font-family: Libre Bodoni;
+}

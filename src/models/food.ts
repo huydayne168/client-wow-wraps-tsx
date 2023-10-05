@@ -2,6 +2,7 @@ import { type } from "os";
 import { Review } from "./review";
 import { Tag } from "./tag";
 import { Category } from "./category";
+import { FlashSale } from "./flashsale";
 export type Food = {
     _id: string;
     name: string;
@@ -13,7 +14,7 @@ export type Food = {
     category: Category;
     tags: Tag[];
     reviews: Review[];
-    flashSale: [];
+    flashSale: FlashSale[];
     salePrice: number | null;
     image: string;
 };

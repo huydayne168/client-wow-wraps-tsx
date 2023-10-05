@@ -5,6 +5,7 @@ import { Alert } from "antd";
 import { AxiosError } from "axios";
 import http from "../../utils/http";
 import { Voucher } from "../../models/voucher";
+import toast from "react-hot-toast";
 const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
     cart,
     getVoucher,
@@ -30,12 +31,18 @@ const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
             const res = await http.get("/api/voucher/get-vouchers", {
                 params: {
                     codeQuery: code,
+                    sortActive: true,
                 },
             });
             console.log(res.data.vouchers);
 
             setVoucher(res.data.vouchers[0]);
             getVoucher(res.data.vouchers[0]);
+            if (res.data.vouchers[0]) {
+                toast.success("Applied voucher!");
+            } else {
+                setErrVoucher(true);
+            }
         } catch (error) {
             if (error instanceof AxiosError) {
                 if (error.response?.status === 409) {
@@ -46,6 +53,7 @@ const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
     }, [code]);
 
     const removeVoucher = useCallback(() => {
+        setErrVoucher(false);
         setVoucher(undefined);
         setCode("");
     }, []);
@@ -165,7 +173,7 @@ const Order: React.FC<{ cart: FoodInCart[]; getVoucher: Function }> = ({
                 <Alert
                     type="error"
                     message="This voucher is not exist!!!"
-                    style={{ color: "red" }}
+                    style={{ color: "red", marginTop: "1.2rem" }}
                 />
             )}
         </div>

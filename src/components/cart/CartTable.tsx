@@ -243,7 +243,7 @@ const CartTable: React.FC<{}> = ({}) => {
                             margin: "3.2rem 0",
                         }}
                     >
-                        You have not add anything to your cart yet!
+                        You have not added anything to your cart yet!
                     </p>
                 )}
             </ul>
