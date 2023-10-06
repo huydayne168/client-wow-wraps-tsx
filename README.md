@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# `WOW WRAPS CLIENT UI`:
+## `About WOW WRAPS`:
+### WOW WRAPS is a food odering website:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-It has client and admin website
 
-## Available Scripts
+-Allow customer to order food, search for foods, read blogs,...
 
-In the project directory, you can run:
+-Allow admin to manage users, foods, flashsales, vouchers,...
 
-### `npm start`
+## `CLIENT`:
+### This is the page for normal user of WOW WRAPS:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Techstacks:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<img src="https://oneteamsolutions.in/blogoneteam/wp-content/uploads/2020/05/REACT-JS-KOCHI.png" height=50 width= auto/> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" height=50 width= auto/> <img src="https://reactrouter.com/_brand/react-router-stacked-color.png" height=50 width= auto/> <img src="https://i0.wp.com/programmingwithmosh.com/wp-content/uploads/2020/02/reduxlogo.png?ssl=1" height=50 width= auto/> <img src="https://iconape.com/wp-content/files/ro/370540/svg/ant-design-logo-icon-png-svg.png" height=50 width= auto/>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Features: 
 
-### `npm run build`
+`Now available`:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    -Login, Sign up
+    
+    -User Cart
+    
+    -Menu
+    
+    -Search products by name, price, category,...
+    
+    -Add reviews, rate for products
+    
+    -Order
+    
+    -Apply vouchers and flashsales
+    
+    -Receive emails
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    -...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`In developing:`
 
-### `npm run eject`
+    -Reserve a table
+    
+    -Chat with admin to ask for help
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    -...
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## `You can visit my client page here:`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Client page: https://client-wow-wraps-tsx.vercel.app/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You can use this acount here to LOG IN:
 
-## Learn More
+    Email: dangtrantien98@gmail.com
+    
+    Password: 12345678
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## You can see the 2 another parts of this WOW WRAPS:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+admin: https://github.com/huydayne168/client-wow-wraps-tsx
+
+backend: https://github.com/huydayne168/wow-wraps-backend
+
+Thank you! Want to see my CV? here: https://huydayne168.github.io/myWebCV/
+
