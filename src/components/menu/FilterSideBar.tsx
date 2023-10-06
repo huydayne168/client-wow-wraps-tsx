@@ -24,16 +24,15 @@ function FilterSideBar() {
             search.delete("sortHighPrice");
             search.delete("sortRate");
             // search.delete("sortFlashSale");
-        } else if (sortFlashSale) {
-            search.set("sortFlashSale", sortFlashSale.toString());
-            // search.delete("sortHighPrice");
-            // search.delete("sortRate");
-            // search.delete("sortLowPrice");
         } else {
             search.delete("sortLowPrice");
             search.delete("sortHighPrice");
             search.delete("sortRate");
             search.delete("sortFlashSale");
+        }
+
+        if (sortFlashSale) {
+            search.set("sortFlashSale", sortFlashSale.toString());
         }
 
         setSearch(search, {
