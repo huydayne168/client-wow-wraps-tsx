@@ -50,9 +50,12 @@ const NavigationBar: React.FC<{}> = () => {
                         error.response?.status === 403
                     ) {
                         navigate("/login");
+                        console.log("error");
                     } else if (error.request) {
                         console.log(error.request);
+                        navigate("/login");
                     }
+                    dispatch(curUserActions.logout());
                 }
             }
         };
@@ -63,8 +66,8 @@ const NavigationBar: React.FC<{}> = () => {
 
     // get current user cart:
     useEffect(() => {
-        try {
-            const getCart = async () => {
+        const getCart = async () => {
+            try {
                 const res = await privateHttp.get("/user/get-cart", {
                     params: {
                         userId: currentUser._id,
@@ -73,13 +76,25 @@ const NavigationBar: React.FC<{}> = () => {
                 console.log(res.data);
 
                 dispatch(cartActions.getCart(res.data));
-            };
-            if (currentUser._id) {
-                console.log("oke");
-                getCart();
+            } catch (error) {
+                if (error instanceof AxiosError) {
+                    if (
+                        error.response?.status === 401 ||
+                        error.response?.status === 403
+                    ) {
+                        navigate("/login");
+                        console.log("error");
+                    } else if (error.request) {
+                        console.log(error.request);
+                        navigate("/login");
+                    }
+                    dispatch(curUserActions.logout());
+                }
             }
-        } catch (error) {
-            console.log(error);
+        };
+        if (currentUser._id) {
+            console.log("get cart");
+            getCart();
         }
     }, [currentUserInfo?._id, currentUser._id]);
     console.log(cart);
