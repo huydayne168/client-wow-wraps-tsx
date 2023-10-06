@@ -12,6 +12,14 @@ You can use this acount here to LOG IN:
 
 `Note`: In the Voucher part, if you want to use a voucher you have to get the voucher code from admin page (Beacause I have not done the sending voucher to user feature :vvv)
 
+## You can see the 2 another parts of this WOW WRAPS:
+
+admin: https://github.com/huydayne168/admin-wow-wraps-tsx
+
+backend: https://github.com/huydayne168/wow-wraps-backend
+
+Thank you! Want to see my CV? here: https://huydayne168.github.io/myWebCV/
+
 ## `About WOW WRAPS`:
 ### WOW WRAPS is a food odering website:
 
@@ -61,11 +69,5 @@ Features:
 
 
 
-## You can see the 2 another parts of this WOW WRAPS:
 
-admin: https://github.com/huydayne168/client-wow-wraps-tsx
-
-backend: https://github.com/huydayne168/wow-wraps-backend
-
-Thank you! Want to see my CV? here: https://huydayne168.github.io/myWebCV/
 
