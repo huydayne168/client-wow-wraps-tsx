@@ -1,12 +1,25 @@
 # `WOW WRAPS CLIENT UI`:
+
+## `You can visit my client page here:`
+
+Client page: https://client-wow-wraps-tsx.vercel.app/
+
+You can use this acount here to LOG IN:
+
+    Email: dangtrantien98@gmail.com
+    
+    Password: 12345678
+
+`Note`: In the Voucher part, if you want to use a voucher you have to get the voucher code from admin page (Beacause I have not done the sending voucher to user feature :vvv)
+
 ## `About WOW WRAPS`:
 ### WOW WRAPS is a food odering website:
 
--It has client and admin website
-
--Allow customer to order food, search for foods, read blogs,...
-
--Allow admin to manage users, foods, flashsales, vouchers,...
+    It has client and admin website
+    
+    Allow customer to order food, search for foods, read blogs,...
+    
+    Allow admin to manage users, foods, flashsales, vouchers,...
 
 ## `CLIENT`:
 ### This is the page for normal user of WOW WRAPS:
@@ -46,17 +59,7 @@ Features:
 
     -...
 
-## `You can visit my client page here:`
 
-Client page: https://client-wow-wraps-tsx.vercel.app/
-
-You can use this acount here to LOG IN:
-
-    Email: dangtrantien98@gmail.com
-    
-    Password: 12345678
-
-`Note`: In the Voucher part, if you want to use a voucher you have to get the voucher code from admin page (Beacause I have not done the sending voucher to user feature :vvv)
 
 ## You can see the 2 another parts of this WOW WRAPS:
 
