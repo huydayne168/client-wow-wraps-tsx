@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+# `WOW WRAPS CLIENT UI`:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## `You can visit my client page here:`
 
-## Available Scripts
+Client page: https://client-wow-wraps-tsx.vercel.app/
 
-In the project directory, you can run:
+You can use this acount here to LOG IN:
 
-### `npm start`
+    Email: dangtrantien98@gmail.com
+    
+    Password: 12345678
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`Note`: In the Voucher part, if you want to use a voucher you have to get the voucher code from admin page (Beacause I have not done the sending voucher to user feature :vvv)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## `About WOW WRAPS`:
+### WOW WRAPS is a food odering website:
 
-### `npm test`
+    It has client and admin website
+    
+    Allow customer to order food, search for foods, read blogs,...
+    
+    Allow admin to manage users, foods, flashsales, vouchers,...
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## `CLIENT`:
+### This is the page for normal user of WOW WRAPS:
 
-### `npm run build`
+Techstacks:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://oneteamsolutions.in/blogoneteam/wp-content/uploads/2020/05/REACT-JS-KOCHI.png" height=50 width= auto/> <img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" height=50 width= auto/> <img src="https://reactrouter.com/_brand/react-router-stacked-color.png" height=50 width= auto/> <img src="https://i0.wp.com/programmingwithmosh.com/wp-content/uploads/2020/02/reduxlogo.png?ssl=1" height=50 width= auto/> <img src="https://iconape.com/wp-content/files/ro/370540/svg/ant-design-logo-icon-png-svg.png" height=50 width= auto/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Features: 
 
-### `npm run eject`
+`Now available`:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    -Login, Sign up
+    
+    -User Cart
+    
+    -Menu
+    
+    -Search products by name, price, category,...
+    
+    -Add reviews, rate for products
+    
+    -Order
+    
+    -Apply vouchers and flashsales
+    
+    -Receive emails
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    -...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`In developing:`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    -Reserve a table
+    
+    -Chat with admin to ask for help
 
-## Learn More
+    -...
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## You can see the 2 another parts of this WOW WRAPS:
+
+admin: https://github.com/huydayne168/client-wow-wraps-tsx
+
+backend: https://github.com/huydayne168/wow-wraps-backend
+
+Thank you! Want to see my CV? here: https://huydayne168.github.io/myWebCV/
+
