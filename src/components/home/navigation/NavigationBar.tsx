@@ -49,11 +49,11 @@ const NavigationBar: React.FC<{}> = () => {
                         error.response?.status === 401 ||
                         error.response?.status === 403
                     ) {
-                        navigate("/login");
+                        // navigate("/login");
                         console.log("error");
                     } else if (error.request) {
                         console.log(error.request);
-                        navigate("/login");
+                        // navigate("/login");
                     }
                     dispatch(curUserActions.logout());
                 }
