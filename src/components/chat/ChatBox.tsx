@@ -8,7 +8,7 @@ import useGetMessage from "../../hooks/api/Chat/useGetMessage";
 import { Message } from "../../models/Message";
 import useSendMessage from "../../hooks/api/Chat/useSendMessage";
 import { RoomChat } from "../../models/RoomChat";
-const socket = openSocket("http://localhost:8000");
+const socket = openSocket("https://wow-wraps-backend.onrender.com");
 const ChatBox: React.FC<{ room: RoomChat | undefined }> = ({ room }) => {
     const currentUser = useAppSelector((state) => state.currentUser);
     const [inputValue, setInputValue] = useState("");
